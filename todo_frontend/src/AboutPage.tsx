@@ -1,12 +1,13 @@
 import React from 'react';
 import { Box, Heading } from '@chakra-ui/react';
 
-function App() {
+
+function AboutPage() {
     return (
         <Box>
-            <Heading>This is homepage</Heading>
+            <Heading>This is about page</Heading>
         </Box>
     );
 }
 
-export default App;
+export default AboutPage;
