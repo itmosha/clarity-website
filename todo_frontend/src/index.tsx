@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import IndexPage from './IndexPage';
 import AboutPage from "./AboutPage";
+import ErrorPage from "./ErrorPage";
 import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <IndexPage />,
+        errorElement: <ErrorPage />,
     },
     {
         path: '/about',
