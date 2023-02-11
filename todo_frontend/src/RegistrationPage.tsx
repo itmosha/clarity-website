@@ -22,9 +22,30 @@ function RegistrationPage() {
                     password: '',
                     confirm_password: '',
                 }}
-                onSubmit={(values: any, actions: any) => {
-                    setTimeout( () => {
-                        console.log(values);
+                onSubmit={ (values: any, actions: any) => {
+                    setTimeout( async () => {
+                        const response = await fetch('http://127.0.0.1:8000/api/register/', {
+                            method: 'POST',
+                            mode: 'cors',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'username': values.name,
+                                'email': values.email,
+                                'password': values.password
+                            })
+                        });
+
+                        if (response.status === 200) {
+                            const responseJson = await response.json();
+
+                            // login and redirect user
+
+                        } else if (response.status === 400) {
+                            // handle user already exists
+                        }
+
                         actions.setSubmitting(false);
                     }, 500);
                 }}
