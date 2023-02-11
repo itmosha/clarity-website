@@ -7,6 +7,7 @@ import ErrorPage from "./ErrorPage";
 import TablesPage from "./TablesPage";
 import TablePage from "./TablePage";
 import RegistrationPage from "./RegistrationPage";
+import LoginPage from "./LoginPage";
 import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <RegistrationPage />,
+    },
+    {
+        path: '/login',
+        element: <LoginPage />,
     },
 ]);
 

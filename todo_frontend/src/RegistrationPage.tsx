@@ -60,15 +60,16 @@ function RegistrationPage() {
                                 setCookie('access_token', loginJson.token, { path: '/', expires });
                                 setCookie('expires', loginJson.expiry, { path: '/', expires });
 
-                                alert('logged in successfully');
                                 window.location.replace(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/`);
                             } else if (loginResponse.status === 400) {
-                                alert('login error')
-                                // Handle login error
+                                // Handle login errors
                             }
                         } else if (registerResponse.status === 400) {
-                            alert('user already exists')
-                            // Handle user already exists
+                            const registerResponseJson = await registerResponse.json();
+                            console.log('REGISTER ERROR:');
+                            console.log(JSON.stringify(registerResponseJson));
+
+                            // Handle register errors
                         }
 
                         actions.setSubmitting(false);
