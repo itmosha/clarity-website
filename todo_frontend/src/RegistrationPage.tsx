@@ -26,7 +26,7 @@ function RegistrationPage() {
                 }}
                 onSubmit={ (values: any, actions: any) => {
                     setTimeout( async () => {
-                        const registerResponse = await fetch('http://127.0.0.1:8000/api/register/', {
+                        const registerResponse = await fetch(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:8000/api/register/`, {
                             method: 'POST',
                             mode: 'cors',
                             headers: {
@@ -40,7 +40,7 @@ function RegistrationPage() {
                         });
 
                         if (registerResponse.status === 200) {
-                            const loginResponse = await fetch('http://127.0.0.1:8000/api/login/', {
+                            const loginResponse = await fetch(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:8000/api/login/`, {
                                 method: 'POST',
                                 mode: 'cors',
                                 headers: {
@@ -61,7 +61,7 @@ function RegistrationPage() {
                                 setCookie('expires', loginJson.expiry, { path: '/', expires });
 
                                 alert('logged in successfully');
-                                window.location.replace('http://127.0.0.1:3000/');
+                                window.location.replace(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/`);
                             } else if (loginResponse.status === 400) {
                                 alert('login error')
                                 // Handle login error

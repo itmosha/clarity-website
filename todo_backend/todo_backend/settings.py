@@ -72,8 +72,8 @@ TEMPLATES = [
     },
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ( 'http://127.0.0.1:3000', )
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = ( os.getenv('PROTOCOL') + '://' + os.getenv('HOSTNAME') + ':3000', )
 
 WSGI_APPLICATION = 'todo_backend.wsgi.application'
 
