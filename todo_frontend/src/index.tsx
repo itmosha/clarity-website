@@ -10,13 +10,13 @@ import RegistrationPage from "./RegistrationPage";
 import LoginPage from "./LoginPage";
 import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { extendTheme } from "@chakra-ui/react";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <IndexPage />,
-        errorElement: <ErrorPage />,
+        element: <IndexPage/>,
+        errorElement: <ErrorPage/>
     },
     {
         path: '/about',
@@ -40,6 +40,13 @@ const router = createBrowserRouter([
     },
 ]);
 
+const theme = extendTheme({
+    fonts: {
+        heading: `ClashDisplay-Variable,ui-serif,Georgia,Cambria,Times New Roman,Times,serif`,
+        body: `ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji`,
+    }
+})
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
@@ -47,7 +54,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <RouterProvider router={router} />
         </ChakraProvider>
     </React.StrictMode>
