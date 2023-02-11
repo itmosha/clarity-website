@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Center, Heading, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
+import { useCookies } from "react-cookie";
 
 function RegistrationPage() {
+    const [cookies, setCookie] = useCookies(['access_token', 'expires']);
 
     const validateName = (value: string) => { return ( !value ? 'Name cannot be empty' : null ) };
     const validateEmail = (value: string) => { return ( !value ? 'Email cannot be empty' : (
@@ -24,7 +26,7 @@ function RegistrationPage() {
                 }}
                 onSubmit={ (values: any, actions: any) => {
                     setTimeout( async () => {
-                        const response = await fetch('http://127.0.0.1:8000/api/register/', {
+                        const registerResponse = await fetch('http://127.0.0.1:8000/api/register/', {
                             method: 'POST',
                             mode: 'cors',
                             headers: {
@@ -37,13 +39,36 @@ function RegistrationPage() {
                             })
                         });
 
-                        if (response.status === 200) {
-                            const responseJson = await response.json();
+                        if (registerResponse.status === 200) {
+                            const loginResponse = await fetch('http://127.0.0.1:8000/api/login/', {
+                                method: 'POST',
+                                mode: 'cors',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    'username': values.name,
+                                    'password': values.password
+                                })
+                            });
 
-                            // login and redirect user
+                            if (loginResponse.status === 200) {
+                                const loginJson = await loginResponse.json();
+                                let expires = new Date();
 
-                        } else if (response.status === 400) {
-                            // handle user already exists
+                                expires.setTime(loginJson.expiry);
+                                setCookie('access_token', loginJson.token, { path: '/', expires });
+                                setCookie('expires', loginJson.expiry, { path: '/', expires });
+
+                                alert('logged in successfully');
+                                window.location.replace('http://127.0.0.1:3000/');
+                            } else if (loginResponse.status === 400) {
+                                alert('login error')
+                                // Handle login error
+                            }
+                        } else if (registerResponse.status === 400) {
+                            alert('user already exists')
+                            // Handle user already exists
                         }
 
                         actions.setSubmitting(false);
