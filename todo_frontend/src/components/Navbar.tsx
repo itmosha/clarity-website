@@ -1,23 +1,44 @@
 import React from 'react';
-import { Box, Center, Flex, Heading, Link } from '@chakra-ui/react';
+import {Box, Center, Flex, Heading, Link, Avatar, Button, Circle, Square} from '@chakra-ui/react';
 
+// #86A3B8 #E8D2A6 #F48484 #F55050
 function Navbar() {
     return (
         <Box
-            p={'10px'}
+            p={'10px 25px'}
             border={'2px solid black'}
             rounded={'1rem'}
             boxShadow={'2px 2px 0px 1px rgba(0, 0, 0, 1)'}
         >
-            <Flex px={'10px'} justify={'space-between'}>
+            <Flex justify={'space-between'}>
                 <Center>
                     <Link href={'/'} style={{ textDecoration: 'none' }}>
-                        <Heading fontSize={'1.5rem'} textDecoration={'none'}>ToDo</Heading>
+                        <Heading fontSize={'2rem'} textDecoration={'none'}>ToDo</Heading>
                     </Link>
                 </Center>
-                <Center>
-                    <Heading fontSize={'1.25rem'}>My account</Heading>
-                </Center>
+                <Flex>
+                    <Center mx={'20px'} position={'relative'}>
+                        <Center h={'2.5rem'} w={'7.5rem'} bgColor={'#86A3B8'} p={'5px 15px'} rounded={'0.5rem'} zIndex={'1000'} border={'2px solid black'} cursor={'pointer'}
+                            _hover={{ transform: 'translate(2px, 2px)', transition: 'ease .25s' }}
+                            transform={'translate(0px, 0px)'}
+                            transition={'ease .25s'}
+                        >
+                            <Heading fontSize={'1.25rem'}>Sign in</Heading>
+                        </Center>
+                        <Box bgColor={'black'} h={'2.5rem'} w={'7.5rem'} rounded={'0.5rem'} position={'absolute'} zIndex={'0'} left={'2px'} top={'2px'}/>
+                    </Center>
+                    <Center position={'relative'}>
+                        <Avatar
+                            _hover={{ transform: 'translate(2px, 2px)', transition: 'ease .25s' }}
+                            transform={'translate(0px, 0px)'}
+                            transition={'ease .25s'}
+                            cursor={'pointer'}
+                            bg={'#F48484'} boxSize={'2.5rem'} border={'2px solid black'}
+                            zIndex={'1000'}
+                        />
+                        <Circle size={'2.5rem'} bgColor={'black'} position={'absolute'} zIndex={'0'} left={'2px'} top={'2px'}/>
+                    </Center>
+                </Flex>
             </Flex>
         </Box>
     );
