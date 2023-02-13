@@ -1,7 +1,6 @@
 import React from 'react';
 import {Box, Center, Flex, Heading, Link, Avatar, Button, Circle, Square} from '@chakra-ui/react';
 
-// #EDF67D #F896D8 #CA7DF9 #724CF9 #564592
 function Navbar() {
     return (
         <Box
@@ -24,7 +23,7 @@ function Navbar() {
                             transform={'translate(0px, 0px)'}
                             transition={'ease .25s'}
                             cursor={'pointer'}
-                            bg={'#17A398'} boxSize={'2.5rem'} border={'2px solid black'}
+                            bg={'#19B3A6'} boxSize={'2.5rem'} border={'2px solid black'}
                             zIndex={'1000'}
                         />
                         <Circle size={'2.5rem'} bgColor={'black'} position={'absolute'} zIndex={'0'} left={'2px'} top={'2px'}/>

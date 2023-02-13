@@ -1,11 +1,16 @@
 import React from 'react';
 import {Box, Heading, Text, Flex, VStack, Center} from '@chakra-ui/react';
 import Navbar from "./components/Navbar";
+import IndexDrawing from "./components/IndexDrawing";
+import IndexLinksBar from "./components/IndexLinksBar";
 
 function IndexPage() {
     return (
         <Box bgColor={'#e5e7eb'} minH={'100vh'} maxW={'100vw'} pt={'10px'}>
             <Navbar />
+            {/*<Box p={'5vh 5vw'}>*/}
+            {/*    <IndexDrawing />*/}
+            {/*</Box>*/}
             <Flex p={'5vh 5vw'} justify={'space-between'}>
                 <VStack align={'start'}>
                     <Flex>
@@ -21,7 +26,9 @@ function IndexPage() {
                 <VStack border={'2px solid black'} boxShadow={'2px 2px 0px 1px rgba(0, 0, 0, 1)'} w={'30vw'} rounded={'1rem'} minH={'50vh'} align={'start'}>
                     <Heading p={'10px 20px 0px'}>Brand new paradigm.</Heading>
                     <Text px={'20px'} pb={'30px'}>We offer a unique system with many powerful tools to maximise your progress.</Text>
-                    <Flex bgColor={'#F6AA8E'} h={'3rem'} roundedRight={'full'}
+                    <Flex bgColor={'#F6AA8E'} w={'16vw'} h={'3rem'} roundedRight={'full'}
+                          _hover={{ width: '25vw', transition: 'ease .5s' }}
+                          transition={'width .5s ease'}
                          border={'2px solid black'}
                          cursor={'pointer'}
                          borderLeft={'none'}
@@ -33,6 +40,8 @@ function IndexPage() {
                         </Center>
                     </Flex>
                     <Flex bgColor={'#F17F55'} w={'12vw'} h={'3rem'} roundedRight={'full'}
+                          _hover={{ width: '25vw', transition: 'ease .5s' }}
+                          transition={'width .5s ease'}
                           border={'2px solid black'}
                           cursor={'pointer'}
                           borderLeft={'none'}
@@ -43,7 +52,9 @@ function IndexPage() {
                             <Heading fontSize={'1.25rem'} fontWeight={'700'}>Task linking</Heading>
                         </Center>
                     </Flex>
-                    <Flex bgColor={'#ED541D'} h={'3rem'} roundedRight={'full'}
+                    <Flex bgColor={'#ED541D'} width={'17vw'} h={'3rem'} roundedRight={'full'}
+                          _hover={{ width: '25vw', transition: 'ease .5s' }}
+                          transition={'width .5s ease'}
                           border={'2px solid black'}
                           cursor={'pointer'}
                           borderLeft={'none'}
@@ -56,6 +67,7 @@ function IndexPage() {
                     </Flex>
                 </VStack>
             </Flex>
+            <IndexLinksBar />
         </Box>
     );
 }
