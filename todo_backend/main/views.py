@@ -4,7 +4,8 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth import login
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
-from .serializers import UserSerializer, RegisterSerializer
+from .serializers import *
+from .models import *
 
 
 class RegisterAPI(generics.GenericAPIView):
@@ -29,3 +30,22 @@ class LoginAPI(KnoxLoginView):
         user = serializer.validated_data['user']
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
+
+
+class TablesAPI(generics.ListCreateAPIView):
+    queryset = Table.objects.all()
+    serializer_class = TableSerializer
+    lookup_field = 'unique_uuid'
+    permission_classes = [ permissions.BasePermission ]
+
+class ColumnsAPI(generics.ListCreateAPIView):
+    queryset = Column.objects.all()
+    serializer_class = ColumnSerializer
+    lookup_field = 'unique_uuid'
+    permission_classes = [ permissions.BasePermission ]
+
+class TasksAPI(generics.ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    lookup_field = 'unique_uuid'
+    permission_classes = [ permissions.BasePermission ]
