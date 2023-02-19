@@ -20,7 +20,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class TaskSerializer(serializers.HyperlinkedModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         lookup_field = 'unique_uuid'
@@ -28,8 +28,8 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
             'url': { 'lookup_field': 'unique_uuid' }
         }
 
-class ColumnSerializer(serializers.HyperlinkedModelSerializer):
-    tasks = TaskSerializer(many=True)
+class ColumnSerializer(serializers.ModelSerializer):
+    # tasks = TaskSerializer(many=True)
     class Meta:
         model = Column
         lookup_field = 'unique_uuid'
@@ -39,11 +39,15 @@ class ColumnSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class TableSerializer(serializers.HyperlinkedModelSerializer):
-    columns = ColumnSerializer(many=True)
-
+    # columns = ColumnSerializer(many=True)
     class Meta:
+        
+        fields = '__all__'
         model = Table
         lookup_field = 'unique_uuid'
         extra_kwargs = {
             'url': { 'lookup_field': 'unique_uuid' }
         }
+        
+        def create(self, validated_data):
+            return Table.objects.create(**validated_data)

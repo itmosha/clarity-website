@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, views, status
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth import login
@@ -32,20 +32,44 @@ class LoginAPI(KnoxLoginView):
         return super(LoginAPI, self).post(request, format=None)
 
 
-class TablesAPI(generics.ListCreateAPIView):
-    queryset = Table.objects.all()
+class TablesListAPIView(generics.ListCreateAPIView):
     serializer_class = TableSerializer
+    # permission_classes = [ permissions.IsAdminUser ]
+    
+    def get(self, request):
+        tables = Table.objects.all()
+        serializer_context = { 'request': request, }
+        serializer = TableSerializer(tables, context=serializer_context, many=True)
+        return Response({"tables": serializer.data})
+    
+    def post(self, request):
+        table = { "title": request.data.get('title'), "description": request.data.get('description') }
+        print(request.data)
+        serializer = TableSerializer(data=table)
+        if serializer.is_valid(raise_exception=True):
+            table_saved = serializer.save()
+        return Response({"success": "Table created"})
+    
+    
+class TableDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = TableSerializer
+    queryset = Table.objects
     lookup_field = 'unique_uuid'
-    permission_classes = [ permissions.BasePermission ]
 
-class ColumnsAPI(generics.ListCreateAPIView):
-    queryset = Column.objects.all()
-    serializer_class = ColumnSerializer
-    lookup_field = 'unique_uuid'
-    permission_classes = [ permissions.BasePermission ]
+    def delete(self, request, pk):
+        table = get_object_or_404(Table.objects.all(), pk=pk)
+        table.delete()
+        return Response({"success": "Table deleted"})
+    
 
-class TasksAPI(generics.ListCreateAPIView):
-    queryset = Task.objects.all()
-    serializer_class = TaskSerializer
-    lookup_field = 'unique_uuid'
-    permission_classes = [ permissions.BasePermission ]
+# class ColumnsAPI(generics.ListCreateAPIView):
+#     queryset = Column.objects.all()
+#     serializer_class = ColumnSerializer
+#     lookup_field = 'unique_uuid'
+#     permission_classes = [ permissions.BasePermission ]
+
+# class TasksAPI(generics.ListCreateAPIView):
+#     queryset = Task.objects.all()
+#     serializer_class = TaskSerializer
+#     lookup_field = 'unique_uuid'
+#     permission_classes = [ permissions.BasePermission ]
