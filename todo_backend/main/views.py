@@ -22,7 +22,7 @@ class RegisterAPI(generics.GenericAPIView):
 
 
 class LoginAPI(KnoxLoginView):
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request, format=None):
         serializer = AuthTokenSerializer(data=request.data)
@@ -34,32 +34,45 @@ class LoginAPI(KnoxLoginView):
 
 class TablesListAPIView(generics.ListCreateAPIView):
     serializer_class = TableSerializer
-    # permission_classes = [ permissions.IsAdminUser ]
+    permission_classes = [permissions.IsAdminUser]
     
     def get(self, request):
         tables = Table.objects.all()
-        serializer_context = { 'request': request, }
+        serializer_context = {"request": request,}
         serializer = TableSerializer(tables, context=serializer_context, many=True)
         return Response({"tables": serializer.data})
     
     def post(self, request):
-        table = { "title": request.data.get('title'), "description": request.data.get('description') }
-        print(request.data)
+        table = {"username": request.data.get('username'),
+                 "title": request.data.get('title'), 
+                 "description": request.data.get('description') }
         serializer = TableSerializer(data=table)
         if serializer.is_valid(raise_exception=True):
             table_saved = serializer.save()
-        return Response({"success": "Table created"})
+        return Response(status=status.HTTP_201_CREATED)
     
-    
-class TableDetailAPIView(generics.RetrieveAPIView):
+class TableByIdAPIView(generics.RetrieveDestroyAPIView):
     serializer_class = TableSerializer
     queryset = Table.objects
+    permission_classes = [permissions.IsAdminUser]
     lookup_field = 'unique_uuid'
-
-    def delete(self, request, pk):
-        table = get_object_or_404(Table.objects.all(), pk=pk)
+    
+    def delete(self, request, unique_uuid=None):
+        table = Table.objects.filter(unique_uuid=unique_uuid)
         table.delete()
-        return Response({"success": "Table deleted"})
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TableSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'username'
+
+    def get(self, request, username=None):
+        tables = Table.objects.filter(username=username)
+        serializer_context = {"request": request,}
+        serializer = TableSerializer(tables, context=serializer_context, many=True)
+        return Response({"tables": serializer.data})
     
 
 # class ColumnsAPI(generics.ListCreateAPIView):

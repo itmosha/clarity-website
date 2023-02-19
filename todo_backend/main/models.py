@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Table(models.Model):
     unique_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    # username = models.CharField(max_length=100, unique=True)
+    username = models.CharField(max_length=100, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -19,7 +19,7 @@ class Table(models.Model):
         return self.title
 
     class Meta:
-        # ordering = ['created']
+        ordering = ['created']
         verbose_name = 'Table'
         verbose_name_plural = 'Tables'    
 
