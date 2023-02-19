@@ -76,12 +76,11 @@ class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
         if userId_provided and username_provided and token_provided:
             tokens = AuthToken.objects.filter(user_id=userId_provided).values()
             tokens_list = [token for token in tokens]
-            
             if len(tokens_list) == 0:
                 return Response(status=status.HTTP_403_FORBIDDEN)
             else:
                 for token in tokens_list:
-                    if token.get('user_id') == int(userId_provided) and token.get('digest') == token_provided:
+                    if token.get('user_id') == int(userId_provided) and token_provided.startswith(token.get('token_key')):
                         tables = Table.objects.filter(username=username_provided)
                         serializer_context = {"request": request,}
                         serializer = TableSerializer(tables, context=serializer_context, many=True)
