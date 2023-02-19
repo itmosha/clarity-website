@@ -22,15 +22,19 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
+        fields = '__all__'
         model = Task
         lookup_field = 'unique_uuid'
         extra_kwargs = {
             'url': { 'lookup_field': 'unique_uuid' }
         }
 
+        def create(self, validated_data):
+            return Task.objects.create(**validated_data)
+
 class ColumnSerializer(serializers.ModelSerializer):
-    # tasks = TaskSerializer(many=True)
     class Meta:
+        tasks = TaskSerializer(many=True)
         fields = '__all__'
         model = Column
         lookup_field = 'unique_uuid'
@@ -38,11 +42,13 @@ class ColumnSerializer(serializers.ModelSerializer):
             'url': { 'lookup_field': 'unique_uuid' }
         }
 
+        def create(self, validated_data):
+            return Column.objects.create(**validated_data)
+
 
 class TableSerializer(serializers.HyperlinkedModelSerializer):
-    columns = ColumnSerializer(many=True)
     class Meta:
-        
+        columns = ColumnSerializer(many=True)
         fields = '__all__'
         model = Table
         lookup_field = 'unique_uuid'

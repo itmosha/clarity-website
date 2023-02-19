@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.postgres.fields import ArrayField
 
 
 class Table(models.Model):
@@ -12,8 +13,7 @@ class Table(models.Model):
     title = models.CharField(max_length=1000)
     description = models.TextField(max_length=1000, blank=True, null=True)
 
-    def columns(self):
-        return Column.objects.filter(table=self)
+    columns = ArrayField(models.URLField(max_length=500, blank=True))
 
     def __str__(self):
         return self.title
@@ -25,7 +25,8 @@ class Table(models.Model):
 
 
 class Column(models.Model):
-    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    table_url = models.URLField()
+    table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
     class ColumnColor(models.TextChoices):
         WHITE = 'WH', _('White')
         YELLOW = 'YE', _('Yellow')
@@ -44,8 +45,7 @@ class Column(models.Model):
     title = models.CharField(max_length=1000, blank=False)
     heading_color = models.CharField(max_length=2, choices=ColumnColor.choices, default=ColumnColor.WHITE)
 
-    # def tasks(self):
-    #    return Task.objects.filter(column=self)
+    tasks = ArrayField(models.CharField(max_length=500, blank=True))
 
     def __str__(self):
         return self.title
@@ -57,9 +57,11 @@ class Column(models.Model):
 
 
 class Task(models.Model):
-    # column = models.ForeignKey(Column, on_delete=models.CASCADE)
+    column_url = models.URLField()
+    column = models.ForeignKey(Column, on_delete=models.CASCADE, null=True)
 
     unique_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    username = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -71,7 +73,7 @@ class Task(models.Model):
         return self.title
     
     class Meta:
-        # ordering = ['created']
+        ordering = ['created']
         verbose_name = 'Task'
         verbose_name_plural = 'Tasks'
 

@@ -100,9 +100,12 @@ class ColumnsListAPIView(generics.ListCreateAPIView):
         return Response({"columns": serializer.data}, status=status.HTTP_200_OK)
        
     def post(self, request):
+        print(request.data)
         column = {"username": request.data.get('username'),
-                 "title": request.data.get('title'), 
-                 "heading_color": request.data.get('heading_color') }
+                  "table_url": request.data.get('table_url'),
+                  "tasks": request.data.get('tasks'),
+                  "title": request.data.get('title'), 
+                  "heading_color": request.data.get('heading_color') }
         serializer = ColumnSerializer(data=column)
         if serializer.is_valid(raise_exception=True):
             column_saved = serializer.save()
@@ -118,15 +121,36 @@ class ColumnByIdAPIView(generics.RetrieveDestroyAPIView):
         column = Column.objects.filter(unique_uuid=unique_uuid)
         column.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
-# class ColumnsAPI(generics.ListCreateAPIView):
-#     queryset = Column.objects.all()
-#     serializer_class = ColumnSerializer
-#     lookup_field = 'unique_uuid'
-#     permission_classes = [ permissions.BasePermission ]
 
-# class TasksAPI(generics.ListCreateAPIView):
-#     queryset = Task.objects.all()
-#     serializer_class = TaskSerializer
-#     lookup_field = 'unique_uuid'
-#     permission_classes = [ permissions.BasePermission ]
+class TasksListAPIView(generics.ListCreateAPIView):
+    serializer_class = TaskSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+    def get(self, request):
+        tasks = Task.objects.all()
+        serializer_context = {"request": request,}
+        serializer = TaskSerializer(tasks, context=serializer_context, many=True)
+        return Response({"tasks": serializer.data}, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        task = {"username": request.data.get('username'),
+                "column_url": request.data.get('column_url'),
+                "title": request.data.get('title'), 
+                "description": request.data.get('description'),
+                "completed": request.data.get('completed') }
+        serializer = TaskSerializer(data=task)
+        if serializer.is_valid(raise_exception=True):
+            task_saved = serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+
+class TaskByIdAPIView(generics.RetrieveDestroyAPIView):
+    serializer_class = TaskSerializer
+    queryset = Task.objects
+    permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'unique_uuid'
+    
+    def delete(self, request, unique_uuid=None):
+        task = Task.objects.filter(unique_uuid=unique_uuid)
+        task.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
