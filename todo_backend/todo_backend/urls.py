@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/tables/', TablesListAPIView.as_view(), name='tables'),
     path('api/tables/id/<str:unique_uuid>/', TableByIdAPIView.as_view(), name='table-detail'),
     path('api/tables/username/<str:username>/', TableByUsernameAPIView.as_view(), name='table-username'),
+    path('api/columns/', ColumnsListAPIView.as_view(), name='columns'),
+    path('api/columns/id/<str:unique_uuid>/', ColumnByIdAPIView.as_view(), name='column-detail'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

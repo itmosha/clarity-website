@@ -31,6 +31,7 @@ class TaskSerializer(serializers.ModelSerializer):
 class ColumnSerializer(serializers.ModelSerializer):
     # tasks = TaskSerializer(many=True)
     class Meta:
+        fields = '__all__'
         model = Column
         lookup_field = 'unique_uuid'
         extra_kwargs = {
@@ -39,7 +40,7 @@ class ColumnSerializer(serializers.ModelSerializer):
 
 
 class TableSerializer(serializers.HyperlinkedModelSerializer):
-    # columns = ColumnSerializer(many=True)
+    columns = ColumnSerializer(many=True)
     class Meta:
         
         fields = '__all__'

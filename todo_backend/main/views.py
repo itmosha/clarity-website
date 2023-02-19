@@ -68,7 +68,7 @@ class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
     lookup_field = 'username'
 
-    def get(self, request, username):
+    def get(self, request, username=None):
         userId_provided = int(request.META.get('HTTP_USER_ID'))
         username_provided = request.META.get('HTTP_USERNAME')
         token_provided = request.META.get('HTTP_ACCESS_TOKEN')
@@ -85,10 +85,40 @@ class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
                         serializer_context = {"request": request,}
                         serializer = TableSerializer(tables, context=serializer_context, many=True)
         
-                        return Response({"tables": serializer.data})
+                        return Response({"tables": serializer.data}, status=status.HTTP_200_OK)
                 return Response(status=status.HTTP_403_FORBIDDEN)
         return Response(status=status.HTTP_403_FORBIDDEN)
 
+class ColumnsListAPIView(generics.ListCreateAPIView):
+    serializer_class = ColumnSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+    def get(self, request):
+        columns = Column.objects.all()
+        serializer_context = {"request": request,}
+        serializer = ColumnSerializer(columns, context=serializer_context, many=True)
+        return Response({"columns": serializer.data}, status=status.HTTP_200_OK)
+       
+    def post(self, request):
+        column = {"username": request.data.get('username'),
+                 "title": request.data.get('title'), 
+                 "heading_color": request.data.get('heading_color') }
+        serializer = ColumnSerializer(data=column)
+        if serializer.is_valid(raise_exception=True):
+            column_saved = serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    
+class ColumnByIdAPIView(generics.RetrieveDestroyAPIView):
+    serializer_class = ColumnSerializer
+    queryset = Column.objects
+    permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'unique_uuid'
+    
+    def delete(self, request, unique_uuid=None):
+        column = Column.objects.filter(unique_uuid=unique_uuid)
+        column.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 # class ColumnsAPI(generics.ListCreateAPIView):
 #     queryset = Column.objects.all()
 #     serializer_class = ColumnSerializer
