@@ -68,12 +68,27 @@ class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
     lookup_field = 'username'
 
-    def get(self, request, username=None):
-        tables = Table.objects.filter(username=username)
-        serializer_context = {"request": request,}
-        serializer = TableSerializer(tables, context=serializer_context, many=True)
-        return Response({"tables": serializer.data})
-    
+    def get(self, request, username):
+        userId_provided = int(request.META.get('HTTP_USER_ID'))
+        username_provided = request.META.get('HTTP_USERNAME')
+        token_provided = request.META.get('HTTP_ACCESS_TOKEN')
+
+        if userId_provided and username_provided and token_provided:
+            tokens = AuthToken.objects.filter(user_id=userId_provided).values()
+            tokens_list = [token for token in tokens]
+            
+            if len(tokens_list) == 0:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+            else:
+                for token in tokens_list:
+                    if token.get('user_id') == int(userId_provided) and token.get('digest') == token_provided:
+                        tables = Table.objects.filter(username=username_provided)
+                        serializer_context = {"request": request,}
+                        serializer = TableSerializer(tables, context=serializer_context, many=True)
+        
+                        return Response({"tables": serializer.data})
+                return Response(status=status.HTTP_403_FORBIDDEN)
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 # class ColumnsAPI(generics.ListCreateAPIView):
 #     queryset = Column.objects.all()
