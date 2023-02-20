@@ -33,8 +33,8 @@ class TaskSerializer(serializers.ModelSerializer):
             return Task.objects.create(**validated_data)
 
 class ColumnSerializer(serializers.ModelSerializer):
+    tasks = TaskSerializer(many=True)
     class Meta:
-        tasks = TaskSerializer(many=True)
         fields = '__all__'
         model = Column
         lookup_field = 'unique_uuid'
@@ -47,8 +47,8 @@ class ColumnSerializer(serializers.ModelSerializer):
 
 
 class TableSerializer(serializers.HyperlinkedModelSerializer):
+    columns = ColumnSerializer(many=True)
     class Meta:
-        columns = ColumnSerializer(many=True)
         fields = '__all__'
         model = Table
         lookup_field = 'unique_uuid'

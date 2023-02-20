@@ -13,7 +13,8 @@ class Table(models.Model):
     title = models.CharField(max_length=1000)
     description = models.TextField(max_length=1000, blank=True, null=True)
 
-    columns = ArrayField(models.URLField(max_length=500, blank=True))
+    def columns(self):
+        return Column.objects.filter(table=self)
 
     def __str__(self):
         return self.title
@@ -45,7 +46,8 @@ class Column(models.Model):
     title = models.CharField(max_length=1000, blank=False)
     heading_color = models.CharField(max_length=2, choices=ColumnColor.choices, default=ColumnColor.WHITE)
 
-    tasks = ArrayField(models.CharField(max_length=500, blank=True))
+    def tasks(self):
+        return Task.objects.filter(column=self)
 
     def __str__(self):
         return self.title
