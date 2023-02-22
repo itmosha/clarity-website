@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 
 
 function TablePage() {
-    const { tableID } = useParams();
+    const { table_title } = useParams();
 
     return (
         <Box>
-            <Heading>This is table { tableID } </Heading>
+            <Heading>This is table { table_title } </Heading>
         </Box>
     );
 }

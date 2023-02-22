@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         element: <TablesPage />,
     },
     {
-        path: 'tables/:tableID',
+        path: '/:username/:table_title',
         element: <TablePage />,
     },
     {

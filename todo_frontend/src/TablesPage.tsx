@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Heading, Link } from '@chakra-ui/react';
 import { useCookies } from 'react-cookie';
 
 
 function TablesPage() {
-    const [tables, setTables] = useState(null);
-    const [error, setError] = useState(null);
+    const [data, setData] = useState({tables: []});
+    const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [cookies, setCookie] = useCookies();
 
@@ -23,9 +23,13 @@ function TablesPage() {
                     'Username': usernameProvided,
                 }
             })
-            console.log(response.status);
-            const tables_ = await response.json();
-            console.log(tables_);
+            
+            if (response.status === 200) {
+                const data = await response.json();
+                setData(data);
+            } else {
+                setError('Unable to fetch data :(');
+            }
         }
         getData();
     }, []);
@@ -33,6 +37,15 @@ function TablesPage() {
     return (
         <Box>
             <Heading>This is tables page</Heading>
+            <Box>
+                { error === '' ? (
+                    <Box>
+                        { data?.tables?.map((table: any) => { 
+                            return <Link href={`${table.username}/${table.title}`}>{ table.title }</Link> 
+                        }) }
+                    </Box>
+                ) : <Heading>{ error }</Heading> }
+            </Box>
         </Box>
     );
 }
