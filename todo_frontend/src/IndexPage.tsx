@@ -8,9 +8,9 @@ function IndexPage() {
     return (
         <Box bgColor={'#e5e7eb'} minH={'100vh'} maxW={'100vw'} pt={'10px'}>
         <Navbar />
-            <Box p={'5vh 5vw'}>
+            {/* <Box p={'5vh 5vw'}>
                 <IndexDrawing />
-            </Box>
+            </Box> */}
             <Flex p={'5vh 5vw'} justify={'space-between'}>
                 <VStack align={'start'}>
                     <Flex>

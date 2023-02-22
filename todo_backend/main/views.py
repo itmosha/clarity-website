@@ -71,7 +71,7 @@ class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request, username=None):
         userId_provided = int(request.META.get('HTTP_USER_ID'))
         username_provided = request.META.get('HTTP_USERNAME')
-        token_provided = request.META.get('HTTP_ACCESS_TOKEN')
+        token_provided = request.META.get('HTTP_AUTHORIZATION')[6:]
 
         if userId_provided and username_provided and token_provided:
             tokens = AuthToken.objects.filter(user_id=userId_provided).values()

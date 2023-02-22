@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Flex, Heading, Center } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 
 function IndexLinksBar() {
@@ -9,7 +10,9 @@ function IndexLinksBar() {
                   boxShadow={'2px 2px 0px 1px rgba(0, 0, 0, 1)'} border={'2px solid black'} rounded={'1rem'}
             >
                 <Center w={'12vw'} p={'10px'} cursor={'pointer'} borderRight={'2px solid black'}>
-                    <Heading fontSize={'1rem'}>My workspace</Heading>
+                    <Link to='/tables' style={{ textDecoration: 'none' }}>
+                        <Heading fontSize={'1rem'}>My workspace</Heading>
+                    </Link>
                 </Center>
                 <Center w={'12vw'} p={'10px'} cursor={'pointer'} >
                     <Heading fontSize={'1rem'}>Plugins</Heading>

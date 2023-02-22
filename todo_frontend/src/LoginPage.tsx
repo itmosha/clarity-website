@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik';
 import { useCookies } from "react-cookie";
 
 function LoginPage() {
-    const [cookies, setCookie] = useCookies(['access_token', 'expires']);
+    const [cookies, setCookie] = useCookies(['access_token', 'expires', 'username']);
 
     return (
         <Box>
@@ -37,6 +37,7 @@ function LoginPage() {
                             expires.setTime(loginJson.expiry);
                             setCookie('access_token', loginJson.token, { path: '/', expires });
                             setCookie('expires', loginJson.expiry, { path: '/', expires });
+                            setCookie('username', values.name, { path: '/', expires });
 
                             window.location.replace(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/`);
                         } else if (loginResponse.status === 400) {

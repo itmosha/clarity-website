@@ -11,6 +11,7 @@ import LoginPage from "./LoginPage";
 import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { extendTheme } from "@chakra-ui/react";
+import { CookiesProvider } from 'react-cookie';
 
 const router = createBrowserRouter([
     {
@@ -53,9 +54,9 @@ const root = ReactDOM.createRoot(
 
 
 root.render(
-    <React.StrictMode>
+    <CookiesProvider>
         <ChakraProvider theme={theme}>
             <RouterProvider router={router} />
         </ChakraProvider>
-    </React.StrictMode>
+    </CookiesProvider>
 );
