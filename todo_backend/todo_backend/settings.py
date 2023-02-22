@@ -1,5 +1,6 @@
 from pathlib import Path
 from dotenv import load_dotenv
+from corsheaders.defaults import default_headers
 import os
 
 if load_dotenv('../.env') is False:
@@ -73,11 +74,12 @@ TEMPLATES = [
     },
 ]
 
-CORS_ALLOW_HEADERS = (
-    'Access-Control-Allow-Headers',
-    'Access-Control-Allow-Credentials',
-)
+# CORS_ALLOW_HEADERS = (
+#     'Access-Control-Allow-Headers',
+#     'Access-Control-Allow-Credentials',
+# )
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = default_headers + ('username',)
 CORS_ORIGIN_WHITELIST = ( 'http://localhost:3000', )
 
 

@@ -69,7 +69,7 @@ class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'username'
 
     def get(self, request, username=None):
-        userId_provided = int(request.META.get('HTTP_USER_ID'))
+        userId_provided = 23
         username_provided = request.META.get('HTTP_USERNAME')
         token_provided = request.META.get('HTTP_AUTHORIZATION')[6:]
 

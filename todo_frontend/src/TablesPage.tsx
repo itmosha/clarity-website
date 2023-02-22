@@ -21,8 +21,6 @@ function TablesPage() {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${accessTokenProvided}`,
                     'Username': usernameProvided,
-                    'User-Id': '23',
-                    'Access-Token': accessTokenProvided,
                 }
             })
             console.log(response.status);

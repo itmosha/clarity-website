@@ -7,7 +7,7 @@ function LoginPage() {
     const [cookies, setCookie] = useCookies(['access_token', 'expires', 'username']);
 
     return (
-        <Box>
+        <Box bgColor='#e5e7eb'>
             <Center pt={'20px'}>
                 <Heading>Sign in</Heading>
             </Center>
@@ -57,7 +57,7 @@ function LoginPage() {
                                 <Field name={'name'}>
                                     {({ field, form }: any) => (
                                         <FormControl isInvalid={ form.errors.name && form.touched.name }>
-                                            <Input {...field} placeholder={'Name'} />
+                                            <Input {...field} placeholder={'Name'}/>
                                             <FormErrorMessage>{ form.errors.name }</FormErrorMessage>
                                         </FormControl>
                                     )}
