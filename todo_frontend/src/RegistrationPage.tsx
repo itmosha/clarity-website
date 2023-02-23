@@ -1,10 +1,13 @@
-import React from 'react';
-import { Box, Center, Heading, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Box, Center, Heading, Text, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { useCookies } from "react-cookie";
 
 function RegistrationPage() {
     const [cookies, setCookie] = useCookies(['access_token', 'expires']);
+    const [usernameError, setUsernameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [error, setError] = useState('');
 
     const validateName = (value: string) => { return ( !value ? 'Name cannot be empty' : null ) };
     const validateEmail = (value: string) => { return ( !value ? 'Email cannot be empty' : (
@@ -13,7 +16,7 @@ function RegistrationPage() {
         value.length < 8 ? 'At least 8 characters' : null )) };
 
     return (
-        <Box>
+        <Box bgColor={'#e5e7eb'}>
             <Center pt={'20px'}>
                 <Heading>Sign up</Heading>
             </Center>
@@ -53,6 +56,9 @@ function RegistrationPage() {
                             });
 
                             if (loginResponse.status === 200) {
+                                setUsernameError('');
+                                setEmailError('');
+
                                 const loginJson = await loginResponse.json();
                                 let expires = new Date();
 
@@ -66,10 +72,19 @@ function RegistrationPage() {
                             }
                         } else if (registerResponse.status === 400) {
                             const registerResponseJson = await registerResponse.json();
-                            console.log('REGISTER ERROR:');
-                            console.log(JSON.stringify(registerResponseJson));
+                            const error = registerResponseJson['message'];
 
-                            // Handle register errors
+                            if (error) {
+                                if (error === 'username') {
+                                    setEmailError('');
+                                    setUsernameError('This name is already taken');
+                                } else if (error === 'email') {
+                                    setEmailError('This email is already taken');
+                                    setUsernameError('');
+                                }
+                            } else {
+                                setError('Unknown error');
+                            }
                         }
 
                         actions.setSubmitting(false);
@@ -88,6 +103,9 @@ function RegistrationPage() {
                                         </FormControl>
                                     )}
                                 </Field>
+                                <Heading textColor={'red'}>
+                                    { usernameError }
+                                </Heading>
                             </Box>
                             <Box py={'0.5rem'}>
                                 <Field name={'email'} validate={ validateEmail }>
@@ -98,6 +116,9 @@ function RegistrationPage() {
                                         </FormControl>
                                     )}
                                 </Field>
+                                <Heading textColor={'red'}>
+                                    { emailError }
+                                </Heading>
                             </Box>
                             <Box py={'0.5rem'}>
                                 <Field name={'password'} validate={ validatePassword }>
@@ -123,6 +144,9 @@ function RegistrationPage() {
                                 <Button w={'10vw'} mt={'10px'} colorScheme={'blue'} isLoading={ props.isSubmitting } type={'submit'}>
                                     Sign up
                                 </Button>
+                                <Text textColor={'red'}>
+                                    { error }
+                                </Text>
                             </Center>
                         </Form>
                     </Box>
@@ -131,5 +155,6 @@ function RegistrationPage() {
         </Box>
     );
 }
+
 
 export default RegistrationPage;
