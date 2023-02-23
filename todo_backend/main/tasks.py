@@ -4,7 +4,7 @@ import os
 
 @shared_task()
 def send_registration_email(email_address, username):
-    print(f'Sending email to {username}...')
+    print(f'Sending email to {email_address}...')
 
     send_mail(
         subject='Clarity Registration',
@@ -14,4 +14,4 @@ def send_registration_email(email_address, username):
         fail_silently=False,
     )
 
-    print(f'Email to {username} was delivered!')
+    print(f'Email to {email_address} was delivered!')

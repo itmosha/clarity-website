@@ -13,16 +13,24 @@ class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+        same_username_user = User.objects.filter(username=request.data.get('username')).values()
+        same_email_user = User.objects.filter(email=request.data.get('email')).values()
         
-        send_registration_email.delay(request.data.get('email'), request.data.get('username'))
+        if same_username_user:
+            return Response({'message': 'username'}, status=status.HTTP_400_BAD_REQUEST)
+        elif same_email_user:
+            return Response({'message': 'email'}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid()
 
-        return Response({
-            "user": UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": AuthToken.objects.create(user)[1]
-        })
+            user = serializer.save()
+            send_registration_email.delay(request.data.get('email'), request.data.get('username'))
+
+            return Response({
+                "user": UserSerializer(user, context=self.get_serializer_context()).data,
+                "token": AuthToken.objects.create(user)[1]
+            }, status=status.HTTP_201_CREATED)
 
 
 class LoginAPI(KnoxLoginView):
