@@ -2,6 +2,7 @@ from rest_framework import generics, permissions, views, status
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth import login
+from .tasks import send_registration_email
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
 from .serializers import *
@@ -15,6 +16,9 @@ class RegisterAPI(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        
+        send_registration_email.delay(request.data.get('email'), request.data.get('username'))
+
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": AuthToken.objects.create(user)[1]
@@ -41,7 +45,7 @@ class TablesListAPIView(generics.ListCreateAPIView):
         serializer_context = {"request": request,}
         serializer = TableSerializer(tables, context=serializer_context, many=True)
         return Response({"tables": serializer.data})
-    
+
     def post(self, request):
         table = {"username": request.data.get('username'),
                  "title": request.data.get('title'), 
@@ -73,7 +77,7 @@ class TableByUsernameAPIView(generics.RetrieveUpdateDestroyAPIView):
         token_provided = request.META.get('HTTP_AUTHORIZATION')[6:]
         userId = User.objects.filter(username=username_provided).values()[0].get('id')
         
-        if userId and username_provided and token_provided:
+        if userId is not None and username_provided and token_provided:
             tokens = AuthToken.objects.filter(user_id=userId).values()
             tokens_list = [token for token in tokens]
             if len(tokens_list) == 0:
