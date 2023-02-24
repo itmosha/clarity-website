@@ -1,14 +1,6 @@
-html {
-  background-color: #e5e7eb;
-}
-
 body {
   margin: 0;
-  font-family: ClashDisplay-Variable,ui-serif,Georgia,Cambria,Times New Roman,Times,serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: ClashDisplay-Variable,ui-serif,Georgia,Cambria,Times New Roman,Times,serif;
+  position: relative;
 }

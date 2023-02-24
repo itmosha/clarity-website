@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import '@fontsource/alata';
 import './index.css';
 import IndexPage from './IndexPage';
 import AboutPage from "./AboutPage";
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
 
 const theme = extendTheme({
     fonts: {
-        heading: `ClashDisplay-Variable,ui-serif,Georgia,Cambria,Times New Roman,Times,serif`,
+        heading: `Alata, sans-serif`,
         body: `ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji`,
     }
 })
