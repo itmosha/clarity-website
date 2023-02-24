@@ -3,10 +3,22 @@ import {Box, Heading, Text, Flex, VStack, Center} from '@chakra-ui/react';
 import Navbar from "./components/Navbar";
 import IndexLinksBar from "./components/IndexLinksBar";
 
+// BG #161920 
+// ITEMS #1C1F27
+
 function IndexPage() {
     return (
-        <Box minH={'100vh'} maxW={'100vw'} bgColor={'#1A2026'}>
-        <Navbar />
+        <Box minH={'100vh'} w={'100vw'} bgColor={'#161920'}>
+            <Navbar />
+            <Box px={'7vw'}>
+                <Box>
+                    <Heading>Here is all text</Heading>
+                </Box>
+                <Box bgColor={'#1C1F27'} h='300px' w='86vw' boxShadow={'0px 0px 30px 10px rgba(0, 0, 0, .2)'}>
+
+                </Box>
+            </Box>
+        {/* <Navbar /> */}
             {/* <Flex p={'5vh 5vw'} justify={'space-between'}> */}
                 {/* <VStack align={'start'}>
                     <Flex>
