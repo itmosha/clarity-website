@@ -4,11 +4,11 @@ import {Box, Center, Flex, Heading, Text, Link, Avatar, Button, ButtonGroup } fr
 
 function Navbar() {
     return (
-        <Box p={'0 !important'} m={'0 !important'}>
+        <Box p={'0 !important'} m={'0 !important'} bgGradient={'linear(to-t, #161920, #101314, #101314)'} pb={'30px!important'}>
             <Flex justify={'space-between'} w={'100vw'} p={'14px 3vw'}>
                 <Button variant={'unstyled'} _hover={{ bgColor: 'none' }} rounded={'full'}>
                         <Link href={'/'} style={{ textDecoration: 'none' }}>
-                            <Heading fontSize={'2rem'} fontWeight='800' textColor={'#C2C6CA'}>Clarity</Heading>
+                            <Heading fontSize={'2rem'} fontWeight={'500'} textColor={'#C2C6CA'}>Clarity</Heading>
                         </Link>
                 </Button>
                 <Flex>

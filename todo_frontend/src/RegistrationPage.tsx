@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Center, Heading, Text, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
+import { Box, Center, Heading, Text, Button, FormControl, FormErrorMessage, Input, Link } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { useCookies } from "react-cookie";
+import Navbar from './components/Navbar';
+import Layout from './components/Layout';
 
 function RegistrationPage() {
     const [cookies, setCookie] = useCookies(['access_token', 'expires']);
@@ -16,9 +18,11 @@ function RegistrationPage() {
         value.length < 8 ? 'At least 8 characters' : null )) };
 
     return (
-        <Box bgColor={'#e5e7eb'}>
+        <Box bgColor={'#161920'} minH={'100vh'} maxW={'100vw'}>
+            <Navbar />
+            <Layout>
             <Center pt={'20px'}>
-                <Heading>Sign up</Heading>
+                <Heading fontSize={'2rem'} textColor={'#C2C6CA'}>Register</Heading>
             </Center>
             <Formik
                 initialValues={{
@@ -141,8 +145,12 @@ function RegistrationPage() {
                                 </Field>
                             </Box>
                             <Center>
-                                <Button w={'10vw'} mt={'10px'} colorScheme={'blue'} isLoading={ props.isSubmitting } type={'submit'}>
-                                    Sign up
+                                <Button variant={'solid'} bgColor={'#730295'} rounded={'0.5rem'} mt={'30px'} p={'22px 40px'}
+                                    _hover={{ bgColor: '#9100BD' }} isLoading={props.isSubmitting} type={'submit'}
+                                >
+                                    <Link href={'/register/'} style={{ textDecoration: 'none' }}>
+                                        <Heading fontSize={'1.25rem'} fontWeight={'500'} textColor={'#C2C6CA'}>Sign up</Heading>
+                                    </Link>
                                 </Button>
                                 <Text textColor={'red'}>
                                     { error }
@@ -152,6 +160,7 @@ function RegistrationPage() {
                     </Box>
                 )}
             </Formik>
+            </Layout>
         </Box>
     );
 }

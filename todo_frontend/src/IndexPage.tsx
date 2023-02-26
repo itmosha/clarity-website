@@ -1,16 +1,16 @@
 import React from 'react';
 import {Box, Heading, Text, Flex, VStack, Center, Button, Link, Image} from '@chakra-ui/react';
 import Navbar from "./components/Navbar";
-import IndexLinksBar from "./components/IndexLinksBar";
-import { motion } from 'framer-motion';
-// BG #161920 
-// ITEMS #1C1F27
+import Graph from './components/Graph';
+import NoSSR from 'react-no-ssr';
+import Layout from './components/Layout';
 
 function IndexPage() {
     return (
-        <Box minH={'100vh'} w={'100vw'} bgColor={'#161920'}>
+        <Box minH={'100vh'} maxW={'100vw'} bgColor={'#161920'}>
             <Navbar />
             <Box px={'9vw'}>
+                <Layout>
                 <Flex my={'5vh'} minH={'50vh'}>
                     <Box w={'45vw'}>
                         <Flex>
@@ -28,43 +28,46 @@ function IndexPage() {
                             _hover={{ bgColor: '#9100BD' }}
                         >
                             <Link href={'/register/'} style={{ textDecoration: 'none' }}>
-                                <Heading fontSize={'1.25rem'} textColor={'#C2C6CA'} textTransform={'uppercase'}>Try it</Heading>
+                                <Heading fontSize={'1.25rem'} textColor={'#C2C6CA'} textTransform={'uppercase'} fontWeight={'500'}>Try it</Heading>
                             </Link>
                         </Button>
                     </Box>
-                    <Box>
-                        <motion.svg viewBox={'0 0 400 300'}>
-                            <motion.path
-                                stroke={'#730295'}
-                                fill={'#730295'}
-                                d={'M 0 0 L 400 0 L 400 300 L 0 300 Z'}
-                                />
-                        </motion.svg>
-                    </Box>
+                    {/* <NoSSR>
+                        <Graph />
+                    </NoSSR> */}
                 </Flex>
-                <Flex w={'82vw'} boxShadow={'0px 0px 30px 10px rgba(0, 0, 0, .2)'} bgColor={'rgba(0, 0, 0, .2)'} rounded={'0.5rem'}>
-                    <Box textAlign={'center'} p={'10px'} bgColor={'#1C1F27'} rounded={'0.5rem'} w={'26vw'}>
+                <Flex w={'82vw'} rounded={'0.5rem'}>
+                    <Box textAlign={'center'} p={'14px'} bgColor={'#1C1F27'} rounded={'0.5rem'} w={'26vw'} minH={'30vh'}
+                        boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
+                    >
                         <Heading textColor={'#C2C6CA'} fontSize={'1.5rem'} fontWeight={'500'}
                             >Fully customizable</Heading>
                     </Box>
-                    <Box textAlign={'center'} p={'10px'} bgColor={'#1C1F27'} mx={'2vw'} rounded={'0.5rem'} w={'26vw'}>
+                    <Box textAlign={'center'} p={'14px'} bgColor={'#1C1F27'} mx={'2vw'} rounded={'0.5rem'} w={'26vw'} minH={'30vh'}
+                        boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
+                    >
                         <Heading textColor={'#C2C6CA'} fontSize={'1.5rem'} fontWeight={'500'}
                             >Task linking</Heading>
                     </Box>
-                    <Box textAlign={'center'} p={'10px'} bgColor={'#1C1F27'} rounded={'0.5rem'} w={'26vw'}>
+                    <Box textAlign={'center'} p={'14px'} bgColor={'#1C1F27'} rounded={'0.5rem'} w={'26vw'} minH={'30vh'}
+                        boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
+                    >
                         <Heading textColor={'#C2C6CA'} fontSize={'1.5rem'} fontWeight={'500'}
                         >Great visualization</Heading>
                     </Box>
                 </Flex>
-                <Box w={'82vw'} textAlign={'center'} mt={'8vh'} p={'0!important'}>
-                    <Flex w={'fit-content'}>
-                        <Heading textColor={'#730295'} fontWeight={'500'}>Brand new</Heading>
-                        <Heading textColor={'#C2C6CA'} fontWeight={'500'} ml={'0.5rem'}>paradigm.</Heading>
+                <Box w={'82vw'} textAlign={'center'} mt={'10vh'} p={'0!important'}>
+                    <Flex justifyContent={'center'}>
+                        <Flex>
+                            <Heading textColor={'#730295'} fontWeight={'500'}>Brand new</Heading>
+                            <Heading textColor={'#C2C6CA'} fontWeight={'500'} ml={'0.5rem'}>paradigm.</Heading>
+                        </Flex>
                     </Flex>
                     <Text textColor={'#5E6172'} mt={'5px'}>
                         We offer a unique system with many powerful tools to maximise your progress.
                     </Text>
                 </Box>
+                </Layout>
             </Box>
         </Box>
     );

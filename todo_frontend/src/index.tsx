@@ -13,6 +13,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { extendTheme } from "@chakra-ui/react";
 import { CookiesProvider } from 'react-cookie';
+import { AnimatePresence } from 'framer-motion';
 
 const router = createBrowserRouter([
     {
@@ -56,8 +57,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <CookiesProvider>
-        <ChakraProvider theme={theme}>
-            <RouterProvider router={router} />
-        </ChakraProvider>
+        <AnimatePresence mode={'wait'} initial={true} onExitComplete={() => window.scrollTo(0, 0)}>
+            <ChakraProvider theme={theme}>
+                <RouterProvider router={router} />
+            </ChakraProvider>
+        </AnimatePresence>
     </CookiesProvider>
 );
