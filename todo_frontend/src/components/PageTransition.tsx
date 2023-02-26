@@ -8,7 +8,7 @@ const variants = {
     exit: { opacity: 0, x: 0, y: 20 }
 }
 
-const Layout = ({children}: any) => {
+const PageTransition = ({children}: any) => {
     return (
         <motion.article
             initial={'hidden'}
@@ -23,4 +23,4 @@ const Layout = ({children}: any) => {
     );
 }
 
-export default Layout;
+export default PageTransition;

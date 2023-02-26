@@ -57,7 +57,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <CookiesProvider>
-        <AnimatePresence mode={'wait'} initial={true} onExitComplete={() => window.scrollTo(0, 0)}>
+        <AnimatePresence 
+            mode={'wait'} 
+            initial={true} 
+            onExitComplete={() => window.scrollTo(0, 0)}
+        >
             <ChakraProvider theme={theme}>
                 <RouterProvider router={router} />
             </ChakraProvider>
