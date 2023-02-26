@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Box, Center, Heading, Text, Button, FormControl, FormErrorMessage, Input, Link } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { useCookies } from "react-cookie";
-import Navbar from './components/Navbar';
-import PageTransition from './components/PageTransition';
+import Navbar from '../components/Navbar';
+import PageTransition from '../components/PageTransition';
 
 function RegistrationPage() {
     const [cookies, setCookie] = useCookies(['access_token', 'expires']);
