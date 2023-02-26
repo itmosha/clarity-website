@@ -1,13 +1,11 @@
 import React from 'react';
 import {Box, Heading, Text, Flex, VStack, Center, Button, Link, Image} from '@chakra-ui/react';
 import Navbar from "./components/Navbar";
-import Graph from './components/Graph';
-import NoSSR from 'react-no-ssr';
 import Layout from './components/Layout';
 
 function IndexPage() {
     return (
-        <Box minH={'100vh'} maxW={'100vw'} bgColor={'#161920'}>
+        <Box minH={'100vh'} bgColor={'#161920'}>
             <Navbar />
             <Box px={'9vw'}>
                 <Layout>
@@ -32,25 +30,31 @@ function IndexPage() {
                             </Link>
                         </Button>
                     </Box>
-                    {/* <NoSSR>
-                        <Graph />
-                    </NoSSR> */}
                 </Flex>
-                <Flex w={'82vw'} rounded={'0.5rem'}>
+                <Flex rounded={'0.5rem'}>
                     <Box textAlign={'center'} p={'14px'} bgColor={'#1C1F27'} rounded={'0.5rem'} w={'26vw'} minH={'30vh'}
                         boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
+                        _hover={{ transform: 'scale(1.05)' }}
+                        transition={'ease .5s'}
+                        cursor={'pointer'}
                     >
                         <Heading textColor={'#C2C6CA'} fontSize={'1.5rem'} fontWeight={'500'}
                             >Fully customizable</Heading>
                     </Box>
                     <Box textAlign={'center'} p={'14px'} bgColor={'#1C1F27'} mx={'2vw'} rounded={'0.5rem'} w={'26vw'} minH={'30vh'}
                         boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
+                        _hover={{ transform: 'scale(1.05)' }}
+                        transition={'ease .5s'}
+                        cursor={'pointer'}
                     >
                         <Heading textColor={'#C2C6CA'} fontSize={'1.5rem'} fontWeight={'500'}
                             >Task linking</Heading>
                     </Box>
                     <Box textAlign={'center'} p={'14px'} bgColor={'#1C1F27'} rounded={'0.5rem'} w={'26vw'} minH={'30vh'}
                         boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
+                        _hover={{ transform: 'scale(1.05)' }}
+                        transition={'ease .5s'}
+                        cursor={'pointer'}
                     >
                         <Heading textColor={'#C2C6CA'} fontSize={'1.5rem'} fontWeight={'500'}
                         >Great visualization</Heading>
