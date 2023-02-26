@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar';
+import Footer from './Footer';
 import PageTransition from './PageTransition';
 import { Box } from '@chakra-ui/react';
 
@@ -12,11 +13,12 @@ const BasicLayout = ({children}: any) => {
             bgColor={'#161920'}
         >
             <Navbar />
-            <Box px={'9vw'}>
+            <Box>
                 <PageTransition>
                     { children }
                 </PageTransition>
             </Box>
+            <Footer />
         </Box>
     );
 }

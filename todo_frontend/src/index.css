@@ -9,3 +9,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
 }
+
+.icon-home .icon-telegram .icon-github {
+  color: rgba(94, 97, 114, 0.3);
+}
+
+.icon-home:hover {
+  color: rgba(115, 2, 149, 0.75);
+}
+
+.icon-telegram:hover {
+  color: rgba(56, 135, 214, 0.75);
+}
+
+.icon-github:hover {
+  color: rgba(68, 17, 115, 0.75);
+}

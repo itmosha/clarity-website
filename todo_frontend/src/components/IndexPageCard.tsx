@@ -6,11 +6,10 @@ const IndexPageCard = ({ title, description }: any) => {
     return (
         <Box 
             w={'26vw'} 
-            minH={'30vh'}
-            p={'14px'} 
+            p={'15px 25px'} 
             rounded={'0.5rem'} 
             bgColor={'#1C1F27'} 
-            textAlign={'center'} 
+            textAlign={'start'} 
             cursor={'pointer'}
             boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
             _hover={{ transform: 'scale(1.05)' }}
@@ -24,7 +23,7 @@ const IndexPageCard = ({ title, description }: any) => {
             >
                 { title }
             </Heading>
-            <Text textColor={'#5E6172'}>
+            <Text textColor={'#5E6172'} lineHeight={'1.35'}>
                 { description }
             </Text>
         </Box>

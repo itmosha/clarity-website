@@ -5,7 +5,7 @@ import { Box, Flex, Heading, Text, Link, Button, ButtonGroup } from '@chakra-ui/
 function Navbar() {
     return (
         <Box 
-            p={'0px 0px 30px 0px !important'} 
+            p={'0px 0px 40px 0px !important'} 
             m={'0 !important'} 
             bgGradient={'linear(to-t, #161920, #101314, #101314)'} 
         >
