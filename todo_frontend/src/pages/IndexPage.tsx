@@ -1,12 +1,24 @@
 import React from 'react';
 import IndexPageCard from '../components/IndexPageCard';
 import BasicLayout from '../components/BasicLayout';
-import { Box, Heading, Text, Flex, Button, Link, Image, UnorderedList, ListItem } from '@chakra-ui/react';
+import { EmblaOptionsType } from 'embla-carousel-react';
+import { Box, Heading, Text, Flex, Button, Link, Image, UnorderedList, ListItem, Divider } from '@chakra-ui/react';
+import IndexAllInOneCard from '../components/IndexAllInOneCard';
+
+
+const OPTIONS: EmblaOptionsType = {};
+const SLIDE_COUNT = 3
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 function IndexPage() {
     return (
         <BasicLayout>
-            <Flex my={'2vh'} minH={'30vh'} px={'5vw'} justify={'space-between'} mx={'9vw'}>
+            <Flex
+                minH={'30vh'} 
+                m={'3vh 9vw 0vh 9vw'} 
+                px={'5vw'} 
+                justify={'space-between'} 
+            >
                 <Box w={'45vw'}>
                     <Flex mt={'6vh'}>
                         <Heading 
@@ -58,25 +70,37 @@ function IndexPage() {
                     <Image src={'crystal.png'} h={'44vh'}/>
                 </Box>
             </Flex>
-            <Flex gap={'2vw'} mt={'7vh'} mx={'9vw'}>
-                <IndexPageCard 
-                    title={'Full customization.'} 
-                    description={'Clarity provides many ways to flexibly adjust your workspace.'} 
-                />
-                <IndexPageCard
-                    title={'Powerful vusialization.'}
-                    description={'Collecting statistics of your works and building graphical representations helps you keep track of your achievements.'}
-                />
-                <IndexPageCard
-                    title={'Task linking.'}
-                    description={'Strong linking system ensures convenient navigating through your data.'}
-                />
-            </Flex>
+            <Box
+                m={'1vh 9vw 7vh 9vw !important'}
+                textAlign={'center'}
+            >
+                <Flex justify={'center'}>
+                    <Heading textColor={'#730295'} fontWeight={'500'}>All</Heading>
+                    <Heading textColor={'#C2C6CA'} fontWeight={'500'} pl={'0.5rem'}>in one.</Heading>
+                </Flex>
+                <Text textColor={'#5E6172'}>Everything you need is available in a single app. </Text>
+            </Box>
+            <Box
+                m={'5vh 9vw 10vh 9vw !important'}
+                p={'20px 30px'}
+                bgColor={'#1C1F27'} 
+                rounded={'0.5rem'}
+                boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'}
+                textAlign={'center'}
+            >
+                <Flex justify={'center'}>
+                    <IndexAllInOneCard heading='Todo' description='description' />
+                    <Divider orientation={'vertical'} my={'10px'} height={'12vh'} borderColor={'#83869C'}/>
+                    <IndexAllInOneCard heading='Markdown editor' description='description' />
+                    <Divider orientation={'vertical'} my={'10px'} height={'12vh'} borderColor={'#83869C'}/>
+                    <IndexAllInOneCard heading='Time tracker' description='description' />
+                </Flex>
+            </Box>
             <Box 
                 mx={'9vw'}
                 maxW={'82vw'} 
                 p={'0 !important'}
-                my={'14vh'} 
+                my={'10vh'} 
                 textAlign={'center'} 
             >
                 <Flex justifyContent={'center'}>
@@ -90,7 +114,7 @@ function IndexPage() {
                         <Heading 
                             ml={'0.5rem'}
                             fontWeight={'500'} 
-                            textColor={'#C2C6CA'} 
+                            textColor={'#C2C6CA'}
                         >
                             paradigm.
                         </Heading>
@@ -100,14 +124,26 @@ function IndexPage() {
                     We offer a unique system with many powerful tools to maximise your progress.
                 </Text>
             </Box>
-            <Box bgColor={'#1C1F27'} maxW={'82vw'} mx={'9vw'} my={'10vh'} rounded={'0.5rem'}
-                boxShadow={'0 12px 20px 3px rgba(0, 0, 0, .3)'} position={'relative'} p={'15px 25px'}
-            >
-                <Flex pb={'10px'}>
+            <Flex gap={'2vw'} my={'10vh'} mx={'9vw'}>
+                <IndexPageCard 
+                    title={'Full customization.'} 
+                    description={'Clarity provides many ways to flexibly adjust your workspace.'} 
+                />
+                <IndexPageCard
+                    title={'Powerful vusialization.'}
+                    description={'Collecting statistics of your works and building graphical representations helps you keep track of your achievements.'}
+                />
+                <IndexPageCard
+                    title={'Task linking.'}
+                    description={'Strong linking system ensures convenient navigating through your data.'}
+                />
+            </Flex>
+            <Box mx={'9vw'} my={'10vh'} textAlign={'center'}>
+                <Flex pb={'10px'} w={'82vw'} justify={'center'}>
                     <Heading 
                         textColor={'#730295'} 
                         fontWeight={'500'}                            
-                        fontSize={'1.5rem'}
+                        fontSize={'1.75rem'}
                     >
                         Clarity
                     </Heading>
@@ -115,7 +151,7 @@ function IndexPage() {
                         pl={'0.5rem'}
                         textColor={'#C2C6CA'} 
                         fontWeight={'500'}
-                        fontSize={'1.5rem'}
+                        fontSize={'1.75rem'}
                     >
                         brings order to your projects and daily affairs. 
                     </Heading>
