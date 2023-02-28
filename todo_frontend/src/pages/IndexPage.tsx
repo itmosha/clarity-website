@@ -4,6 +4,10 @@ import BasicLayout from '../components/BasicLayout';
 import { EmblaOptionsType } from 'embla-carousel-react';
 import { Box, Heading, Text, Flex, Button, Link, Image, UnorderedList, ListItem, Divider } from '@chakra-ui/react';
 import IndexAllInOneCard from '../components/IndexAllInOneCard';
+import { motion } from 'framer-motion';
+import TodoIcon from '../components/svg/TodoIcon';
+import NotesIcon from '../components/svg/NotesIcon';
+import TimeIcon from '../components/svg/TimeIcon';
 
 
 const OPTIONS: EmblaOptionsType = {};
@@ -89,11 +93,32 @@ function IndexPage() {
                 textAlign={'center'}
             >
                 <Flex justify={'center'}>
-                    <IndexAllInOneCard heading='Todo' description='description' />
-                    <Divider orientation={'vertical'} my={'10px'} height={'12vh'} borderColor={'#83869C'}/>
-                    <IndexAllInOneCard heading='Markdown editor' description='description' />
-                    <Divider orientation={'vertical'} my={'10px'} height={'12vh'} borderColor={'#83869C'}/>
-                    <IndexAllInOneCard heading='Time tracker' description='description' />
+                    <Box>
+                        <IndexAllInOneCard heading='Todo' description='description' />
+                        <Flex justify={'center'} py={'20px'}>
+                            <Box w={'10vw'}>
+                                <TodoIcon />
+                            </Box>
+                        </Flex>
+                    </Box>
+                    <Divider orientation={'vertical'} my={'10px'} height={'auto'} borderColor={'#83869C'}/>
+                    <Box>
+                        <IndexAllInOneCard heading='Notes editor' description='description' />
+                        <Flex justify='center' py='20px'>
+                            <Box w='10vw'>
+                                <NotesIcon />
+                            </Box>
+                        </Flex>
+                    </Box>
+                    <Divider orientation={'vertical'} my={'10px'} height={'auto'} borderColor={'#83869C'}/>
+                    <Box>
+                        <IndexAllInOneCard heading='Time tracker' description='description' />
+                        <Flex justify='center' py='20px'>
+                            <Box w='10vw'>
+                                <TimeIcon />
+                            </Box>
+                        </Flex>
+                    </Box>
                 </Flex>
             </Box>
             <Box 
@@ -153,6 +178,7 @@ function IndexPage() {
                         fontWeight={'500'}
                         fontSize={'1.75rem'}
                     >
+                        
                         brings order to your projects and daily affairs. 
                     </Heading>
                 </Flex>
