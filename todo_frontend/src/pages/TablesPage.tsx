@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Heading, Link } from '@chakra-ui/react';
-import { useCookies } from 'react-cookie';
+import React, { useEffect, useState } from 'react'
+import { Box, Heading, Link } from '@chakra-ui/react'
+import { useCookies } from 'react-cookie'
 
 
-function TablesPage() {
-    const [data, setData] = useState({tables: []});
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(true);
-    const [cookies, setCookie] = useCookies();
+const TablesPage: React.FC<{}> = () => {
+    const [data, setData] = useState({tables: []})
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(true)
+    const [cookies, setCookie] = useCookies()
 
     useEffect(() => {
         const getData = async () => {
@@ -47,7 +47,7 @@ function TablesPage() {
                 ) : <Heading>{ error }</Heading> }
             </Box>
         </Box>
-    );
+    )
 }
 
-export default TablesPage;
+export default TablesPage

@@ -1,20 +1,15 @@
-import React from 'react';
-import IndexPageCard from '../components/IndexPageCard';
-import BasicLayout from '../components/BasicLayout';
-import { EmblaOptionsType } from 'embla-carousel-react';
-import { Box, Heading, Text, Flex, Button, Link, Image, UnorderedList, ListItem, Divider } from '@chakra-ui/react';
-import IndexAllInOneCard from '../components/IndexAllInOneCard';
-import { motion } from 'framer-motion';
-import TodoIcon from '../components/svg/TodoIcon';
-import NotesIcon from '../components/svg/NotesIcon';
-import TimeIcon from '../components/svg/TimeIcon';
+import React from 'react'
+import IndexPageCard from '../components/IndexPageCard'
+import BasicLayout from '../components/BasicLayout'
+import IndexAllInOneCard from '../components/IndexAllInOneCard'
+import TodoIcon from '../components/svg/TodoIcon'
+import NotesIcon from '../components/svg/NotesIcon'
+import TimeIcon from '../components/svg/TimeIcon'
+import IndexObject from '../components/IndexObject'
+import { Box, Heading, Text, Flex, Button, Link, Divider } from '@chakra-ui/react'
 
 
-const OPTIONS: EmblaOptionsType = {};
-const SLIDE_COUNT = 3
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
-
-function IndexPage() {
+const IndexPage: React.FC<{}> = () => {
     return (
         <BasicLayout>
             <Flex
@@ -70,9 +65,7 @@ function IndexPage() {
                         </Button>
                     </Link>
                 </Box>
-                <Box>
-                    <Image src={'crystal.png'} h={'44vh'}/>
-                </Box>
+                <IndexObject />
             </Flex>
             <Box
                 m={'1vh 9vw 7vh 9vw !important'}
@@ -205,7 +198,7 @@ function IndexPage() {
                 </Link>
             </Box>
         </BasicLayout>
-    );
+    )
 }
 
-export default IndexPage;
+export default IndexPage

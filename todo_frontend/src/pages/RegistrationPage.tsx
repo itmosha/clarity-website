@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { Box, Center, Heading, Text, Button, FormControl, FormErrorMessage, Input, Link } from '@chakra-ui/react';
-import { Field, Form, Formik } from 'formik';
-import { useCookies } from "react-cookie";
-import Navbar from '../components/Navbar';
-import PageTransition from '../components/PageTransition';
+import React, { useState } from 'react'
+import { Box, Center, Heading, Text, Button, FormControl, FormErrorMessage, Input, Link } from '@chakra-ui/react'
+import { Field, Form, Formik } from 'formik'
+import { useCookies } from "react-cookie"
+import Navbar from '../components/Navbar'
+import PageTransition from '../components/PageTransition'
 
-function RegistrationPage() {
+
+const RegistrationPage: React.FC<{}> = () => {
     const [cookies, setCookie] = useCookies(['access_token', 'expires']);
     const [usernameError, setUsernameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [error, setError] = useState('');
 
-    const validateName = (value: string) => { return ( !value ? 'Name cannot be empty' : null ) };
+    const validateName = (value: string) => { return ( !value ? 'Name cannot be empty' : null ) }
     const validateEmail = (value: string) => { return ( !value ? 'Email cannot be empty' : (
-        value.indexOf('@') <= -1 ? 'Invalid email' : null ) ) };
+        value.indexOf('@') <= -1 ? 'Invalid email' : null ) ) }
     const validatePassword = (value: string) => { return ( !value ? 'Password cannot be empty' : (
-        value.length < 8 ? 'At least 8 characters' : null )) };
+        value.length < 8 ? 'At least 8 characters' : null )) }
 
     return (
         <Box bgColor={'#161920'} minH={'100vh'} maxW={'100vw'}>
@@ -162,8 +163,7 @@ function RegistrationPage() {
                 </Formik>
             </PageTransition>
         </Box>
-    );
+    )
 }
 
-
-export default RegistrationPage;
+export default RegistrationPage

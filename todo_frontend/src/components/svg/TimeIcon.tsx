@@ -1,6 +1,5 @@
-
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { motion } from 'framer-motion'
 
 
 const draw = {
@@ -18,7 +17,7 @@ const draw = {
     }
 }
 
-const TimeIcon = () => (
+const TimeIcon: React.FC<{}> = () => (
     <motion.svg
         viewBox={'0 0 100 100'}
         initial={'hidden'}
@@ -74,4 +73,4 @@ const TimeIcon = () => (
     </motion.svg>
 )
 
-export default TimeIcon;
+export default TimeIcon

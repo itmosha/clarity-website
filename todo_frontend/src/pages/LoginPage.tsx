@@ -1,10 +1,11 @@
-import React from 'react';
-import { Box, Center, Heading, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react';
-import { Field, Form, Formik } from 'formik';
-import { useCookies } from "react-cookie";
+import React from 'react'
+import { Box, Center, Heading, Button, FormControl, FormErrorMessage, Input } from '@chakra-ui/react'
+import { Field, Form, Formik } from 'formik'
+import { useCookies } from "react-cookie"
 
-function LoginPage() {
-    const [cookies, setCookie] = useCookies(['access_token', 'expires', 'username']);
+
+const LoginPage: React.FC<{}> = () => {
+    const [cookies, setCookie] = useCookies(['access_token', 'expires', 'username'])
 
     return (
         <Box bgColor='#e5e7eb'>
@@ -83,7 +84,7 @@ function LoginPage() {
                 )}
             </Formik>
         </Box>
-    );
+    )
 }
 
-export default LoginPage;
+export default LoginPage

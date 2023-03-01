@@ -1,10 +1,11 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { motion } from 'framer-motion'
+
 
 const draw = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: (i: number) => {
-        const delay = i * 0.5;
+        const delay = i * 0.25;
         return {
             pathLength: 1,
             opacity: 1,
@@ -16,30 +17,20 @@ const draw = {
     }
 }
 
-const TodoIcon = () => {
-    return (
-        <motion.svg 
-            viewBox={'0 0 100 100'} 
-            initial={'hidden'} 
-            animate={'visible'}
-            strokeLinecap='round'    
-            strokeLinejoin='round'
-            strokeWidth='2px'
-            stroke='#5E6172'
-            fill='none'
-        >
-            <motion.path 
-                variants={draw}
-                d={'M 15 5 H 85 V 95 H 15 Z'}
-                custom={1}
-            />
-            <motion.path
-                variants={draw}
-                d={'M 40 20 H 72'}
-                custom={2}
-            />
-            <motion.path
-                variants={draw}
+const TodoIcon: React.FC<{}> = () => (
+    <motion.svg 
+        viewBox={'0 0 100 100'} 
+        initial={'hidden'} 
+        animate={'visible'}
+        strokeLinecap='round'    
+        strokeLinejoin='round'
+        strokeWidth='2px'
+        stroke='#5E6172'
+        fill='none'
+    >
+        <motion.path variants={draw} d={'M 15 5 H 85 V 95 H 15 Z'} custom={1}/>
+        <motion.path variants={draw} d={'M 40 20 H 72'} custom={2}/>
+        <motion.path variants={draw}
                 d={'M 40 35 H 72'}
                 custom={3}
             />
@@ -64,7 +55,6 @@ const TodoIcon = () => {
                 custom={7}
             />
         </motion.svg>
-    );
-}
+)
 
 export default TodoIcon;

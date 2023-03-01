@@ -25,3 +25,10 @@ body {
 .icon-github:hover {
   color: rgba(68, 17, 115, 0.75);
 }
+
+.draggable {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  cursor: pointer;
+}

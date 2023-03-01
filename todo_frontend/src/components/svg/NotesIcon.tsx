@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { motion } from 'framer-motion'
 
 
 const draw = {
@@ -17,7 +17,7 @@ const draw = {
     }
 }
 
-const NotesIcon = () => (
+const NotesIcon: React.FC<{}> = () => (
     <motion.svg
         viewBox={'0 0 100 100'}
         initial={'hidden'}
@@ -106,4 +106,4 @@ const NotesIcon = () => (
     </motion.svg>
 )
 
-export default NotesIcon;
+export default NotesIcon
