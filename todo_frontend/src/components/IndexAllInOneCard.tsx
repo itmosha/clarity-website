@@ -2,12 +2,12 @@ import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
 
 
-type AllInOneCard = {
+type AllInOneCardProps = {
     heading: string,
     description: string
 }
 
-const IndexAllInOneCard: React.FC<AllInOneCard> = (props) => {
+const IndexAllInOneCard: React.FC<AllInOneCardProps> = (props) => {
     const { heading, description } = props;
 
     return (

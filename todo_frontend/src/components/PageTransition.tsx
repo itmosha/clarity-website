@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { motion } from 'framer-motion'
 
 
 const variants = {
@@ -8,7 +8,11 @@ const variants = {
     exit: { opacity: 0, x: 0, y: 20 }
 }
 
-const PageTransition = ({children}: any) => {
+type PageTransitionProps = {
+    children: React.ReactNode
+}
+
+const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
     return (
         <motion.article
             initial={'hidden'}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Flex, Heading, Text, Link, Button, ButtonGroup } from '@chakra-ui/react';
+import React from 'react'
+import { Box, Flex, Heading, Text, Link, Button, ButtonGroup } from '@chakra-ui/react'
 
 
 function Navbar() {
@@ -76,7 +76,7 @@ function Navbar() {
                 </Flex>
             </Flex>
         </Box>
-    );
+    )
 }
 
-export default Navbar;
+export default Navbar

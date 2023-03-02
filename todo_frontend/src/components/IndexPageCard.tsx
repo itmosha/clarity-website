@@ -1,8 +1,13 @@
-import React from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import React from 'react'
+import { Box, Heading, Text } from '@chakra-ui/react'
 
 
-const IndexPageCard = ({ title, description }: any) => {
+type IndexPageCardProps = {
+    title: string,
+    description: string
+}
+
+const IndexPageCard: React.FC<IndexPageCardProps> = ({ title, description }) => {
     return (
         <Box 
             w={'26vw'} 
@@ -27,7 +32,7 @@ const IndexPageCard = ({ title, description }: any) => {
                 { description }
             </Text>
         </Box>
-    );
+    )
 }
 
-export default IndexPageCard;
+export default IndexPageCard

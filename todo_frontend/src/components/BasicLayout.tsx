@@ -1,11 +1,15 @@
 import React from 'react'
-import Navbar from './Navbar';
-import Footer from './Footer';
-import PageTransition from './PageTransition';
-import { Box } from '@chakra-ui/react';
+import Navbar from './Navbar'
+import Footer from './Footer'
+import PageTransition from './PageTransition'
+import { Box } from '@chakra-ui/react'
 
 
-const BasicLayout = ({children}: any) => {
+type BasicLayoutProps = {
+    children: React.ReactNode
+}
+
+const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
     return (
         <Box
             maxW={'100vw'}
@@ -20,7 +24,7 @@ const BasicLayout = ({children}: any) => {
             </Box>
             <Footer />
         </Box>
-    );
+    )
 }
 
-export default BasicLayout;
+export default BasicLayout

@@ -1,11 +1,11 @@
-import React from 'react';
-import { AiFillHome } from 'react-icons/ai';
-import { RiTelegramFill } from 'react-icons/ri';
-import { AiFillGithub } from 'react-icons/ai';
-import { Box, Flex, Heading, Text, Link, VStack, Icon } from '@chakra-ui/react';
+import React from 'react'
+import { AiFillHome } from 'react-icons/ai'
+import { RiTelegramFill } from 'react-icons/ri'
+import { AiFillGithub } from 'react-icons/ai'
+import { Box, Flex, Heading, Text, Link, VStack, Icon } from '@chakra-ui/react'
 
 
-function Footer() {
+const Footer: React.FC<{}> = () => {
     return (
         <Box
             w={'100vw'}
@@ -70,7 +70,7 @@ function Footer() {
                 </Link>
             </Flex>
         </Box>
-    );
+    )
 }
 
-export default Footer;
+export default Footer

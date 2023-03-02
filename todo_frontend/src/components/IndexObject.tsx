@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
-import { Box, Image } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react'
+import { Box, Image } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
 
 
-const IndexObject = () => {
-    const constraintsRef = useRef(null);
+const IndexObject: React.FC<{}> = () => {
+    const constraintsRef = useRef(null)
+
     return (
         <Box 
             position='relative'
@@ -41,7 +42,7 @@ const IndexObject = () => {
                 </motion.svg>
             </motion.div>
         </Box>
-    );
+    )
 }
 
-export default IndexObject;
+export default IndexObject
