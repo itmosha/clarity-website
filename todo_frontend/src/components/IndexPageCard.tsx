@@ -1,17 +1,13 @@
 import React from 'react'
+import PropTypes, { InferProps } from 'prop-types'
 import { Box, Heading, Text } from '@chakra-ui/react'
 
 
-type IndexPageCardProps = {
-    title: string,
-    description: string
-}
-
-const IndexPageCard: React.FC<IndexPageCardProps> = ({ title, description }) => {
+function IndexPageCard({ title, description }: InferProps<typeof IndexPageCard.propTypes>) {
     return (
         <Box 
             w={'26vw'} 
-            p={'15px 25px'} 
+            p={'20px 25px 30px 25px'} 
             rounded={'0.5rem'} 
             bgColor={'#1C1F27'} 
             textAlign={'start'} 
@@ -33,6 +29,11 @@ const IndexPageCard: React.FC<IndexPageCardProps> = ({ title, description }) => 
             </Text>
         </Box>
     )
+}
+
+IndexPageCard.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
 }
 
 export default IndexPageCard

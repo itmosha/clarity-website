@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Flex, Heading, Text, Link, Button, ButtonGroup } from '@chakra-ui/react'
 
 
-function Navbar() {
+const Navbar: React.FC<{}> = () => {
     return (
         <Box 
             p={'0px 0px 40px 0px !important'} 

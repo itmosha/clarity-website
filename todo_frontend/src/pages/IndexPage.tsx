@@ -87,7 +87,7 @@ const IndexPage: React.FC<{}> = () => {
             >
                 <Flex justify={'center'}>
                     <Box>
-                        <IndexAllInOneCard heading='Todo' description='description' />
+                        <IndexAllInOneCard heading='Todo' description='Conveniently store your tasks and manage them.' />
                         <Flex justify={'center'} py={'20px'}>
                             <Box w={'10vw'}>
                                 <TodoIcon />
@@ -96,7 +96,7 @@ const IndexPage: React.FC<{}> = () => {
                     </Box>
                     <Divider orientation={'vertical'} my={'10px'} height={'auto'} borderColor={'#83869C'}/>
                     <Box>
-                        <IndexAllInOneCard heading='Notes editor' description='description' />
+                        <IndexAllInOneCard heading='Notes editor' description='Create and edit your notes in any format you want.' />
                         <Flex justify='center' py='20px'>
                             <Box w='10vw'>
                                 <NotesIcon />
@@ -105,7 +105,7 @@ const IndexPage: React.FC<{}> = () => {
                     </Box>
                     <Divider orientation={'vertical'} my={'10px'} height={'auto'} borderColor={'#83869C'}/>
                     <Box>
-                        <IndexAllInOneCard heading='Time tracker' description='description' />
+                        <IndexAllInOneCard heading='Time tracker' description='Track your work time to precisely analyze your workflow.' />
                         <Flex justify='center' py='20px'>
                             <Box w='10vw'>
                                 <TimeIcon />

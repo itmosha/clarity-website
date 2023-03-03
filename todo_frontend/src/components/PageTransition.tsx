@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import PropTypes, { InferProps } from 'prop-types'
 
 
 const variants = {
@@ -8,11 +9,7 @@ const variants = {
     exit: { opacity: 0, x: 0, y: 20 }
 }
 
-type PageTransitionProps = {
-    children: React.ReactNode
-}
-
-const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
+function PageTransition({ children }: InferProps<typeof PageTransition.propTypes>) {
     return (
         <motion.article
             initial={'hidden'}
@@ -24,7 +21,11 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
         >
             { children }
         </motion.article>
-    );
+    )
 }
 
-export default PageTransition;
+PageTransition.propTypes = {
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+}
+
+export default PageTransition
