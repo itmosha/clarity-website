@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Flex, Heading, Text, Link, Button, ButtonGroup } from '@chakra-ui/react'
+import { useCookies } from 'react-cookie'
 
 
 const Navbar: React.FC<{}> = () => {
+    const [cookies, setCookie] = useCookies();
+    const [loggedIn, setLoggedIn] = useState(false);
+
+
+    useEffect(() => {
+        const usernameProvided = cookies.username;
+        const accessTokenProvided = cookies.access_token;
+
+        if (usernameProvided && accessTokenProvided) {
+            setLoggedIn(true);
+        }
+    }, []);
+
     return (
         <Box 
             p={'0px 0px 40px 0px !important'} 
@@ -14,64 +28,101 @@ const Navbar: React.FC<{}> = () => {
                 p={'14px 3vw'}
                 justify={'space-between'} 
             >
-                <Button variant={'unstyled'} _hover={{ bgColor: 'none' }}>
-                        <Link href={'/'} style={{ textDecoration: 'none' }}>
-                            <Heading
-                                fontSize={'2rem'} 
-                                fontWeight={'500'} 
-                                textColor={'#C2C6CA'}
-                            >
-                                Clarity
-                            </Heading>
-                        </Link>
-                </Button>
+                <Link href={'/'} style={{ textDecoration: 'none' }}>
+                    <Button variant={'unstyled'} _hover={{ bgColor: 'none' }}>
+                                <Heading
+                                    fontSize={'2rem'} 
+                                    fontWeight={'500'} 
+                                    textColor={'#C2C6CA'}
+                                >
+                                    Clarity
+                                </Heading>
+                    </Button>
+                </Link>
                 <Flex>
-                    <ButtonGroup gap={'10px'}>
-                        <Button 
-                            variant={'ghost'} 
-                            rounded={'.5rem'} 
-                            _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }} 
-                        >
-                            <Link href={'/'} style={{ textDecoration: 'none' }}>
-                                <Text 
-                                    fontSize={'0.9rem'} 
-                                    textColor={'#5E6172'} 
-                                    textTransform={'uppercase'}
-                                >
-                                    About
-                                </Text>
-                            </Link>
-                        </Button>
-                        <Button 
-                            variant={'ghost'}
-                            rounded={'.5rem'}
-                             _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
-                        >
-                            <Link href={'/'} style={{ textDecoration: 'none' }}>
-                                <Text 
-                                    fontSize={'0.9rem'} 
-                                    textColor={'#5E6172'} 
-                                    textTransform={'uppercase'}
-                                >
-                                    Log out
-                                </Text>
-                            </Link>
-                        </Button>
-                        <Button 
-                            variant={'ghost'} 
-                            rounded={'.5rem'}
-                            _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
-                        >
-                            <Link href={'/'} style={{ textDecoration: 'none' }}>
-                                <Text 
-                                    fontSize={'0.9rem'} 
-                                    textColor={'#5E6172'} 
-                                    textTransform={'uppercase'}
-                                >
-                                    My account
-                                </Text>
-                            </Link>
-                        </Button>
+                    <ButtonGroup>
+                        <Link href={'/about/'} style={{ textDecoration: 'none' }}>
+                            <Button 
+                                variant={'ghost'} 
+                                rounded={'.5rem'} 
+                                _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }} 
+                            >
+                                    <Text 
+                                        fontSize={'0.9rem'} 
+                                        textColor={'#5E6172'} 
+                                        textTransform={'uppercase'}
+                                    >
+                                        About
+                                    </Text>
+                            </Button>
+                        </Link>
+                        { loggedIn ? (
+                            <Box m={'0 !important'}>
+                                <Link href={'/login/'} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                    <Button 
+                                        variant={'ghost'}
+                                        rounded={'.5rem'}
+                                        _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
+                                    >
+                                            <Text 
+                                                fontSize={'0.9rem'} 
+                                                textColor={'#5E6172'} 
+                                                textTransform={'uppercase'}
+                                            >
+                                                Log out
+                                            </Text>
+                                    </Button>
+                                </Link>
+                                <Link href={'/'} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                    <Button 
+                                        variant={'ghost'} 
+                                        rounded={'.5rem'}
+                                        _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
+                                    >
+                                            <Text 
+                                                fontSize={'0.9rem'} 
+                                                textColor={'#5E6172'} 
+                                                textTransform={'uppercase'}
+                                            >
+                                                My account
+                                            </Text>
+                                    </Button>
+                                </Link>
+                            </Box>
+                        ) : (
+                            <Box m={'0 !important'}>
+                                <Link href={'/login/'} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                    <Button 
+                                        variant={'ghost'}
+                                        rounded={'.5rem'}
+                                        _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
+                                    >
+                                            <Text 
+                                                fontSize={'0.9rem'} 
+                                                textColor={'#5E6172'} 
+                                                textTransform={'uppercase'}
+                                            >
+                                                Log in
+                                            </Text>
+                                    </Button>
+                                </Link>
+                                <Link href={'/register/'} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                    <Button 
+                                        variant={'ghost'} 
+                                        rounded={'.5rem'}
+                                        _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
+                                    >
+                                            <Text 
+                                                fontSize={'0.9rem'} 
+                                                textColor={'#5E6172'} 
+                                                textTransform={'uppercase'}
+                                            >
+                                                Register
+                                            </Text>
+                                    </Button>
+                                </Link>
+                            </Box>
+                        )}
                     </ButtonGroup>
                 </Flex>
             </Flex>
