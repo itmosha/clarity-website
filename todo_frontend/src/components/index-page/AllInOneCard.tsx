@@ -3,7 +3,7 @@ import PropTypes, { InferProps } from 'prop-types'
 import { Box, Heading, Text } from '@chakra-ui/react'
 
 
-function IndexAllInOneCard({heading, description}: InferProps<typeof IndexAllInOneCard.propTypes>) {
+function AllInOneCard({heading, description}: InferProps<typeof AllInOneCard.propTypes>) {
 
     return (
         <Box px={'60px'} w={'25vw'}>
@@ -13,9 +13,9 @@ function IndexAllInOneCard({heading, description}: InferProps<typeof IndexAllInO
     );
 }
 
-IndexAllInOneCard.propTypes = {
+AllInOneCard.propTypes = {
     heading: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
 }
 
-export default IndexAllInOneCard;
+export default AllInOneCard;
