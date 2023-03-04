@@ -55,13 +55,13 @@ const Navbar: React.FC<{}> = () => {
             >
                 <Link href={'/'} style={{ textDecoration: 'none' }}>
                     <Button variant={'unstyled'} _hover={{ bgColor: 'none' }}>
-                                <Heading
-                                    fontSize={'2rem'} 
-                                    fontWeight={'500'} 
-                                    textColor={'#C2C6CA'}
-                                >
-                                    Clarity
-                                </Heading>
+                        <Heading
+                            fontSize={'2rem'} 
+                            fontWeight={'500'}                                 
+                            textColor={'#C2C6CA'}
+                        >
+                            Clarity
+                        </Heading>
                     </Button>
                 </Link>
                 <Flex>

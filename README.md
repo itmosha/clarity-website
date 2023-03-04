@@ -8,6 +8,7 @@ This app is built to combine the functionalities of a todo, note editor and time
 - [Chakra UI](https://chakra-ui.com/) - UI framework with styled components
 - [Django REST Framework](https://www.django-rest-framework.org/) - A toolkit for building RESTful web APIs
 - [Framer Motion](https://www.framer.com/motion/) - Motion library for creating animations, transitions etc
+- [Formik](https://formik.org/) - Form library for React
 - [PostgreSQL](https://www.postgresql.org/) - Relational database used as main storage
 - [Celery](https://docs.celeryq.dev/en/stable/) - Distributed task queue for asynchronous task completion
 - [Redis](https://redis.io/) - In-memory data store for Celery
