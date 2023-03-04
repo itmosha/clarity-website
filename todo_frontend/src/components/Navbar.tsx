@@ -4,9 +4,16 @@ import { useCookies } from 'react-cookie'
 
 
 const Navbar: React.FC<{}> = () => {
-    const [cookies, setCookie] = useCookies();
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'expires', 'username']);
     const [loggedIn, setLoggedIn] = useState(false);
 
+    const performLogout = () => {
+        removeCookie('access_token');
+        removeCookie('expires');
+        removeCookie('username');
+
+        window.location.reload();
+    }
 
     useEffect(() => {
         const usernameProvided = cookies.username;
@@ -58,21 +65,21 @@ const Navbar: React.FC<{}> = () => {
                         </Link>
                         { loggedIn ? (
                             <Box m={'0 !important'}>
-                                <Link href={'/login/'} style={{ textDecoration: 'none' }} ml={'20px'}>
-                                    <Button 
-                                        variant={'ghost'}
-                                        rounded={'.5rem'}
-                                        _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
-                                    >
-                                            <Text 
-                                                fontSize={'0.9rem'} 
-                                                textColor={'#5E6172'} 
-                                                textTransform={'uppercase'}
-                                            >
-                                                Log out
-                                            </Text>
+                                <Button 
+                                    ml={'20px'}
+                                    variant={'ghost'}
+                                    rounded={'.5rem'}
+                                    _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
+                                    onClick={() => performLogout() }
+                                >
+                                        <Text 
+                                            fontSize={'0.9rem'} 
+                                            textColor={'#5E6172'} 
+                                            textTransform={'uppercase'}
+                                        >
+                                            Log out
+                                        </Text>
                                     </Button>
-                                </Link>
                                 <Link href={'/'} style={{ textDecoration: 'none' }} ml={'20px'}>
                                     <Button 
                                         variant={'ghost'} 
