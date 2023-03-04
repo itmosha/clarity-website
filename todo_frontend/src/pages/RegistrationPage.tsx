@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Box, Center, Heading, Text, Button, Flex, Divider, FormControl, FormErrorMessage, Input, Link } from '@chakra-ui/react'
 import { Field, Form, Formik } from 'formik'
 import { useCookies } from "react-cookie"
-import Navbar from '../components/Navbar'
 import PageTransition from '../components/PageTransition'
 
 

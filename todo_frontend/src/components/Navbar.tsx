@@ -98,7 +98,7 @@ const Navbar: React.FC<{}> = () => {
                                             Log out
                                         </Text>
                                     </Button>
-                                <Link href={'/'} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                <Link href={`${cookies.username}/profile/`} style={{ textDecoration: 'none' }} ml={'20px'}>
                                     <Button 
                                         variant={'ghost'} 
                                         rounded={'.5rem'}

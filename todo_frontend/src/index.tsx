@@ -9,6 +9,7 @@ import TablesPage from "./pages/TablesPage";
 import TablePage from "./pages/TablePage";
 import RegistrationPage from "./pages/RegistrationPage";
 import LoginPage from "./pages/LoginPage";
+import ProfilePage from './pages/ProfilePage';
 import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { extendTheme } from "@chakra-ui/react";
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
     {
         path: '/:username/:table_title',
         element: <TablePage />,
+    },
+    {
+        path: '/:username/profile',
+        element: <ProfilePage />,
     },
     {
         path: '/register',
