@@ -25,7 +25,7 @@ class RegisterAPI(generics.GenericAPIView):
             serializer.is_valid()
 
             user = serializer.save()
-            send_registration_email.delay(request.data.get('email'), request.data.get('username'))
+            # send_registration_email.delay(request.data.get('email'), request.data.get('username'))
 
             return Response({
                 "user": UserSerializer(user, context=self.get_serializer_context()).data,
