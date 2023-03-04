@@ -40,7 +40,7 @@ const LoginPage: React.FC<{}> = () => {
                             setCookie('expires', loginJson.expiry, { path: '/', expires });
                             setCookie('username', values.name, { path: '/', expires });
 
-                            window.location.replace(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/`);
+                            window.location.replace(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/${values.name}/`);
                         } else if (loginResponse.status === 400) {
                             const loginResponseJson = await loginResponse.json();
                             console.log('LOG IN ERROR:');

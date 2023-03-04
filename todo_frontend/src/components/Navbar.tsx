@@ -22,15 +22,15 @@ const Navbar: React.FC<{}> = () => {
         })
 
         if (response.status === 204) {
-            alert('Logout ok');
+            console.log('LOGOUT: OK');
+            window.location.reload();
         } else {
-            alert('Error logging out');
+            console.log(`LOGOUT: ERROR, status ${response.status}`);
         }
+
         removeCookie('access_token');
         removeCookie('expires');
         removeCookie('username');
-
-        window.location.reload();
     }
 
     useEffect(() => {

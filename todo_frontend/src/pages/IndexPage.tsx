@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import BasicLayout from '../components/BasicLayout'
 import Transition from '../components/Transition'
 import { Flex, Box, Heading, Text, Link, Button, Divider } from '@chakra-ui/react'
@@ -8,9 +8,24 @@ import TodoIcon from '../components/svg/TodoIcon'
 import NotesIcon from '../components/svg/NotesIcon'
 import TimeIcon from '../components/svg/TimeIcon'
 import IndexPageCard from '../components/index-page/Card'
+import { useCookies } from 'react-cookie'
 
 
 const IndexPage: React.FC<{}> = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [cookies, setCookie] = useCookies(['access_token', 'username']);
+    const [username, setUsername] = useState(null);
+
+    useEffect(() => {
+        const accessTokenProvided = cookies.access_token;
+        const usernameProvided = cookies.username;
+
+        if (accessTokenProvided && usernameProvided) {
+            setIsLoggedIn(true);
+            setUsername(usernameProvided);
+        }
+    }, []);
+
     return (
         <BasicLayout>
             <Transition transitionType='from-left'>
@@ -48,7 +63,7 @@ const IndexPage: React.FC<{}> = () => {
                         <Text textColor={'#5E6172'} lineHeight={'1.35'}>
                             Gain unmatched perspicacity by structuring your tasks and constantly analyzing your productivity.
                         </Text>
-                        <Link href={'/register/'} style={{ textDecoration: 'none' }}>
+                        <Link href={isLoggedIn ? `/${username}/` : '/register/'} style={{ textDecoration: 'none' }}>
                             <Button 
                                 p={'22px 40px'}
                                 mt={'30px'} 
@@ -62,7 +77,7 @@ const IndexPage: React.FC<{}> = () => {
                                     fontWeight={'500'}
                                     textColor={'#C2C6CA'} 
                                 >
-                                    Try it
+                                    { isLoggedIn ? 'My workspace' : 'Try it' }
                                 </Heading>
                             </Button>
                         </Link>
