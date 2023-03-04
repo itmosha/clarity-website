@@ -7,7 +7,25 @@ const Navbar: React.FC<{}> = () => {
     const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'expires', 'username']);
     const [loggedIn, setLoggedIn] = useState(false);
 
-    const performLogout = () => {
+    const performLogout = async () => {
+        const usernameProvided = cookies.username;
+        const accessTokenProvided = cookies.access_token;
+
+        const response = await fetch(`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:8000/api/logout/`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${accessTokenProvided}`,
+                'Username': usernameProvided,
+            }
+        })
+
+        if (response.status === 204) {
+            alert('Logout ok');
+        } else {
+            alert('Error logging out');
+        }
         removeCookie('access_token');
         removeCookie('expires');
         removeCookie('username');
