@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Heading, Link } from '@chakra-ui/react'
+import { Box, Link, Heading, Text } from '@chakra-ui/react'
 import { useCookies } from 'react-cookie'
 import { useParams } from 'react-router-dom'
 
@@ -48,8 +48,17 @@ const TablesPage: React.FC<{}> = () => {
             <Box>
                 { error === '' ? (
                     <Box>
-                        { data?.tables?.map((table: any) => { 
-                            return <Link href={`${table.username}/${table.title}`}>{ table.title }</Link> 
+                        { data?.tables?.map((table: any) => {
+                            return (
+                                <Box>
+                                    <Link href={`${table.username}/${table.slug}`}>
+                                        <Heading>
+                                            { table.title }
+                                        </Heading>
+                                    </Link>
+                                    <Text>{ table.description }</Text>
+                                </Box>
+                            )
                         }) }
                     </Box>
                 ) : <Heading>{ error }</Heading> }
