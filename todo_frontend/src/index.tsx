@@ -5,7 +5,7 @@ import './index.css';
 import IndexPage from './pages/IndexPage';
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
-import TablesPage from "./pages/TablesPage";
+import WorkspacePage from "./pages/WorkspacePage";
 import TablePage from "./pages/TablePage";
 import RegistrationPage from "./pages/RegistrationPage";
 import LoginPage from "./pages/LoginPage";
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/:username',
-        element: <TablesPage />,
+        element: <WorkspacePage />,
     },
     {
         path: '/:username/:table_title',

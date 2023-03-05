@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Box, Link, Heading, Text } from '@chakra-ui/react'
 import { useCookies } from 'react-cookie'
 import { useParams } from 'react-router-dom'
+import WorkspaceNavbar from '../components/workspace/WorkspaceNavbar'
 
 
-const TablesPage: React.FC<{}> = () => {
-    const [data, setData] = useState({tables: []})
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
-    const [cookies, setCookie] = useCookies()
+const WorkspacePage: React.FC<{}> = () => {
+    const [data, setData] = useState({tables: []});
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'expires', 'username']);
 
     const { username } = useParams();
 
@@ -36,15 +37,19 @@ const TablesPage: React.FC<{}> = () => {
                 const data = await response.json();
                 setData(data);
             } else {
-                setError(`Unable to fetch data :(, ${response.status}`);
+                removeCookie('access_token');
+                removeCookie('expires');
+                removeCookie('username');
+
+                setError(`Access forbidden, ${response.status}`);
             }
         }
         getData();
     }, []);
 
     return (
-        <Box>
-            <Heading>This is tables page</Heading>
+        <Box minH={'100vh'} bgColor={'#161920'}>
+            <WorkspaceNavbar />
             <Box>
                 { error === '' ? (
                     <Box>
@@ -67,4 +72,4 @@ const TablesPage: React.FC<{}> = () => {
     )
 }
 
-export default TablesPage
+export default WorkspacePage
