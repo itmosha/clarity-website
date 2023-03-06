@@ -31,6 +31,8 @@ const Navbar: React.FC<{}> = () => {
         removeCookie('access_token');
         removeCookie('expires');
         removeCookie('username');
+
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -53,7 +55,10 @@ const Navbar: React.FC<{}> = () => {
                 p={'14px 3vw'}
                 justify={'space-between'} 
             >
-                <Link href={'/'} style={{ textDecoration: 'none' }}>
+                <Link 
+                    href={`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/`} 
+                    style={{ textDecoration: 'none' }}
+                >
                     <Button variant={'unstyled'} _hover={{ bgColor: 'none' }}>
                         <Heading
                             fontSize={'2rem'} 
@@ -66,19 +71,22 @@ const Navbar: React.FC<{}> = () => {
                 </Link>
                 <Flex>
                     <ButtonGroup>
-                        <Link href={'/about/'} style={{ textDecoration: 'none' }}>
+                        <Link 
+                            href={`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/about/`} 
+                            style={{ textDecoration: 'none' }}
+                        >
                             <Button 
                                 variant={'ghost'} 
                                 rounded={'.5rem'} 
                                 _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }} 
                             >
-                                    <Text 
-                                        fontSize={'0.9rem'} 
-                                        textColor={'#5E6172'} 
-                                        textTransform={'uppercase'}
-                                    >
-                                        About
-                                    </Text>
+                                <Text 
+                                    fontSize={'0.9rem'} 
+                                    textColor={'#5E6172'} 
+                                    textTransform={'uppercase'}
+                                >
+                                    About
+                                </Text>
                             </Button>
                         </Link>
                         { loggedIn ? (
@@ -90,33 +98,41 @@ const Navbar: React.FC<{}> = () => {
                                     _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
                                     onClick={() => performLogout() }
                                 >
-                                        <Text 
-                                            fontSize={'0.9rem'} 
-                                            textColor={'#5E6172'} 
-                                            textTransform={'uppercase'}
-                                        >
-                                            Log out
-                                        </Text>
-                                    </Button>
-                                <Link href={`${cookies.username}/profile/`} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                    <Text 
+                                        fontSize={'0.9rem'} 
+                                        textColor={'#5E6172'} 
+                                        textTransform={'uppercase'}
+                                    >
+                                        Log out
+                                    </Text>
+                                </Button>
+                                <Link 
+                                    href={`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/${cookies.username}/profile/`} 
+                                    style={{ textDecoration: 'none' }} 
+                                    ml={'20px'}
+                                >
                                     <Button 
                                         variant={'ghost'} 
                                         rounded={'.5rem'}
                                         _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
                                     >
-                                            <Text 
-                                                fontSize={'0.9rem'} 
-                                                textColor={'#5E6172'} 
-                                                textTransform={'uppercase'}
-                                            >
-                                                My account
-                                            </Text>
+                                        <Text 
+                                            fontSize={'0.9rem'} 
+                                            textColor={'#5E6172'} 
+                                            textTransform={'uppercase'}
+                                        >
+                                            My account
+                                        </Text>
                                     </Button>
                                 </Link>
                             </Box>
                         ) : (
                             <Box m={'0 !important'}>
-                                <Link href={'/login/'} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                <Link 
+                                    href={`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/login/`} 
+                                    style={{ textDecoration: 'none' }} 
+                                    ml={'20px'}
+                                >
                                     <Button 
                                         variant={'ghost'}
                                         rounded={'.5rem'}
@@ -131,19 +147,23 @@ const Navbar: React.FC<{}> = () => {
                                             </Text>
                                     </Button>
                                 </Link>
-                                <Link href={'/register/'} style={{ textDecoration: 'none' }} ml={'20px'}>
+                                <Link 
+                                    href={`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/register/`} 
+                                    style={{ textDecoration: 'none' }} 
+                                    ml={'20px'}
+                                >
                                     <Button 
                                         variant={'ghost'} 
                                         rounded={'.5rem'}
                                         _hover={{ bgColor: 'rgba(78, 71, 89, .3)' }}
                                     >
-                                            <Text 
-                                                fontSize={'0.9rem'} 
-                                                textColor={'#5E6172'} 
-                                                textTransform={'uppercase'}
-                                            >
-                                                Register
-                                            </Text>
+                                        <Text 
+                                            fontSize={'0.9rem'} 
+                                            textColor={'#5E6172'} 
+                                            textTransform={'uppercase'}
+                                        >
+                                            Register
+                                        </Text>
                                     </Button>
                                 </Link>
                             </Box>
