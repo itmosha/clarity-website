@@ -6,7 +6,6 @@ import IndexPage from './pages/IndexPage';
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
 import WorkspacePage from "./pages/WorkspacePage";
-import TablePage from "./pages/TablePage";
 import RegistrationPage from "./pages/RegistrationPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from './pages/ProfilePage';
@@ -29,10 +28,6 @@ const router = createBrowserRouter([
     {
         path: '/:username',
         element: <WorkspacePage />,
-    },
-    {
-        path: '/:username/:table_title',
-        element: <TablePage />,
     },
     {
         path: '/:username/profile',

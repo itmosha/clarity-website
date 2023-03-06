@@ -27,7 +27,6 @@ class Table(models.Model):
 
 
 class Column(models.Model):
-    table_url = models.URLField()
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
     class ColumnColor(models.TextChoices):
         WHITE = 'WH', _('White')
@@ -60,7 +59,6 @@ class Column(models.Model):
 
 
 class Task(models.Model):
-    column_url = models.URLField()
     column = models.ForeignKey(Column, on_delete=models.CASCADE, null=True)
 
     unique_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)

@@ -10,7 +10,7 @@ const WorkspaceNavbar: React.FC<{}> = () => {
             h='50px'
             maxH='50px'
             p='4px 15px 10px'
-            borderBottom='2px solid #272B36'
+            borderBottom='1px solid #272B36'
         >
             <Link 
                 href={`${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}:3000/`} 

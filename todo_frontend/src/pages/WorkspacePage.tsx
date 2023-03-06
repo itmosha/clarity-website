@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Box, Link, Heading, Text, VStack, Button, ButtonGroup, Spacer, Flex } from '@chakra-ui/react'
+import { Box, Link, Heading, Text, VStack, Button, ButtonGroup, Spacer, Flex, Divider } from '@chakra-ui/react'
 import { useCookies } from 'react-cookie'
 import { useParams } from 'react-router-dom'
-import { GoTasklist, GoFile, GoGear, GoInfo, GoClock } from 'react-icons/go'
+import { GoTasklist, GoFile, GoGear, GoInfo, GoClock, GoChevronLeft } from 'react-icons/go'
 import WorkspaceNavbar from '../components/workspace/WorkspaceNavbar'
+import MenuTable from '../components/workspace/MenuTable'
+import { tab } from '@testing-library/user-event/dist/tab'
 
 
 const WorkspacePage: React.FC<{}> = () => {
@@ -65,22 +67,6 @@ const WorkspacePage: React.FC<{}> = () => {
         <Box h='100vh' bgColor='#161920'>
             <WorkspaceNavbar />
             <Box>
-                {/* { error === '' ? (
-                    <Box>
-                        { data?.tables?.map((table: any) => {
-                            return (
-                                <Box>
-                                    <Link href={`${table.username}/${table.slug}`}>
-                                        <Heading>
-                                            { table.title }
-                                        </Heading>
-                                    </Link>
-                                    <Text>{ table.description }</Text>
-                                </Box>
-                            )
-                        }) }
-                    </Box>
-                ) : <Heading>{ error }</Heading> } */}
                 { error ? (
                     <Heading>{ error }</Heading>
                 ) : (
@@ -92,7 +78,7 @@ const WorkspacePage: React.FC<{}> = () => {
                             w='50px'
                             h='calc(100vh - 50px)'
                             maxW='50px'
-                            borderRight='2px solid #272B36'
+                            borderRight='1px solid #272B36'
                         >
                             <Box
                                 m='0 !important'
@@ -104,11 +90,7 @@ const WorkspacePage: React.FC<{}> = () => {
                                     _hover={{ bgColor: '#1C1F27' }}
                                     p='0 !important'
                                     m='5px !important'
-                                    onClick={() => {
-                                        closeAllTabs();
-                                        setIsTasksTabOpened(!isTasksTabOpened);
-                                    }}
-
+                                    onClick={() => { closeAllTabs(); setIsTasksTabOpened(!isTasksTabOpened); }}
                                 >
                                     <GoTasklist color='#C2C6CA' size='20px' />
                                 </Button>
@@ -119,10 +101,7 @@ const WorkspacePage: React.FC<{}> = () => {
                                     _hover={{ bgColor: '#1C1F27' }}
                                     p='0 !important'
                                     m='0px 5px !important'
-                                    onClick={() => {
-                                        closeAllTabs();
-                                        setIsNotesTabOpened(!isNotesTabOpened);
-                                    }}
+                                    onClick={() => { closeAllTabs(); setIsNotesTabOpened(!isNotesTabOpened); }}
                                 >
                                     <GoFile color='#C2C6CA' size='20px' />
                                 </Button>
@@ -133,10 +112,7 @@ const WorkspacePage: React.FC<{}> = () => {
                                     _hover={{ bgColor: '#1C1F27' }}
                                     p='0 !important'
                                     m='5px !important'
-                                    onClick={() => { 
-                                        closeAllTabs();
-                                        setIsTimerTabOpened(!isTimerTabOpened); 
-                                    }}
+                                    onClick={() => { closeAllTabs(); setIsTimerTabOpened(!isTimerTabOpened); }}
                                 >
                                     <GoClock color='#C2C6CA' size='20px' />
                                 </Button>
@@ -151,10 +127,7 @@ const WorkspacePage: React.FC<{}> = () => {
                                     _hover={{ bgColor: '#1C1F27' }}
                                     p='0 !important'
                                     m='5px !important'
-                                    onClick = {() => {
-                                        closeAllTabs();
-                                        setIsInfoTabOpened(!isInfoTabOpened);
-                                    }}
+                                    onClick = {() => { closeAllTabs(); setIsInfoTabOpened(!isInfoTabOpened); }}
                                 >
                                     <GoInfo color='#C2C6CA' size='20px' />
                                 </Button>
@@ -165,10 +138,7 @@ const WorkspacePage: React.FC<{}> = () => {
                                     _hover={{ bgColor: '#1C1F27' }}
                                     p='0 !important'
                                     m='0px 5px 5px !important'
-                                    onClick={() => {
-                                        closeAllTabs();
-                                        setIsSettingsTabOpened(!isSettingsTabOpened);
-                                    }}
+                                    onClick={() => { closeAllTabs(); setIsSettingsTabOpened(!isSettingsTabOpened); }}
                                 >
                                     <GoGear color='#C2C6CA' size='20px' />
                                 </Button>
@@ -179,7 +149,41 @@ const WorkspacePage: React.FC<{}> = () => {
                             h='calc(100vh - 50px)'
                         >
                             { isTasksTabOpened ? (
-                                <Heading>Tasks</Heading>
+                                <Flex>   
+                                    <Box
+                                        w='250px'
+                                        h='calc(100vh - 50px)'
+                                        p='10px'
+                                        textColor='#C2C6CA'
+                                        borderRight='1px solid #272B36'
+                                    >
+                                        <Flex justify='space-between' h='24px'>
+                                            <Text textTransform='uppercase'>My tasks</Text>
+                                            <Button
+                                                size='30px'                           
+                                                p='0 !important'
+                                                bgColor='rgba(0, 0, 0, 0)'
+                                                _hover={{ bgColor: '#1C1F27' }}
+                                                onClick={() => {
+                                                    closeAllTabs();
+                                                }}
+                                            >
+                                                <GoChevronLeft size='24px'/>
+                                            </Button>
+                                        </Flex>
+                                        <Divider 
+                                            border='1px solid #272B36' 
+                                            my='10px'
+                                        />
+                                        <Box>
+                                            { data?.tables?.map((table: any) => {
+                                                return (
+                                                    <MenuTable table={table} />       
+                                                )
+                                            }) }
+                                        </Box>
+                                    </Box>
+                                </Flex>
                             ) : null }
                             { isNotesTabOpened ? (
                                 <Heading>Notes</Heading>
