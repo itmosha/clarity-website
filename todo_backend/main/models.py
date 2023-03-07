@@ -28,15 +28,6 @@ class Table(models.Model):
 
 class Column(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
-    class ColumnColor(models.TextChoices):
-        WHITE = 'WH', _('White')
-        YELLOW = 'YE', _('Yellow')
-        RED = 'RE', _('Red')
-        GREEN = 'GR', _('Green')
-        BLUE = 'BL', _('Blue')
-        PURPLE = 'PU', _('Purple')
-        PINK = 'PI', _('Pink')
-
 
     unique_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     username = models.CharField(max_length=100)
@@ -44,7 +35,6 @@ class Column(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     title = models.CharField(max_length=1000, blank=False)
-    heading_color = models.CharField(max_length=2, choices=ColumnColor.choices, default=ColumnColor.WHITE)
 
     def tasks(self):
         return Task.objects.filter(column=self)

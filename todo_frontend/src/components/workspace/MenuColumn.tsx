@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Text, Heading, Flex, Button, Center } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { Box, Text, Button, Flex, Center, Menu } from '@chakra-ui/react'
 import PropTypes, { InferProps } from 'prop-types'
-import { GoChevronLeft, GoChevronDown } from 'react-icons/go'
-import MenuColumn from './MenuColumn';
+import { GoChevronDown, GoChevronLeft } from 'react-icons/go';
 
-
-function MenuTable({table}: InferProps<typeof MenuTable.propTypes>) {
+function MenuColumn({column}: InferProps<typeof MenuColumn.propTypes>) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <Box>
+        <Box ml='15px'>
             <Flex h='25px'>
                 <Center>
                     <Button 
@@ -21,7 +19,7 @@ function MenuTable({table}: InferProps<typeof MenuTable.propTypes>) {
                             textColor='#C2C6CA'
                             textTransform='uppercase'
                         >
-                            { table.title }
+                            { column.title }
                         </Text>
                     </Button>
                 </Center>
@@ -46,10 +44,15 @@ function MenuTable({table}: InferProps<typeof MenuTable.propTypes>) {
                 </Button>
             </Flex>
             { isExpanded ? (
-                table.columns?.map((column: any) => {
-                    console.log(column);
+                column.tasks?.map((task: any) => {
                     return (
-                        <MenuColumn column={column} />
+                        <Box ml='15px'>
+                            <Text
+                                textColor='#C2C6CA'
+                            >
+                                { task?.title }
+                            </Text>
+                        </Box>
                     )}
                 )
             ) : null }
@@ -57,8 +60,8 @@ function MenuTable({table}: InferProps<typeof MenuTable.propTypes>) {
     )
 }
 
-MenuTable.propTypes = {
-    table: PropTypes.any
+MenuColumn.propTypes = {
+    column: PropTypes.any
 }
 
-export default MenuTable
+export default MenuColumn
