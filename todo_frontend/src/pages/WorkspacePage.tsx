@@ -6,6 +6,7 @@ import { GoTasklist, GoFile, GoGear, GoInfo, GoClock, GoChevronLeft } from 'reac
 import WorkspaceNavbar from '../components/workspace/WorkspaceNavbar'
 import MenuTable from '../components/workspace/MenuTable'
 import { tab } from '@testing-library/user-event/dist/tab'
+import Table from '../components/workspace/Table'
 
 
 const WorkspacePage: React.FC<{}> = () => {
@@ -177,12 +178,15 @@ const WorkspacePage: React.FC<{}> = () => {
                                         />
                                         <Box>
                                             { data?.tables?.map((table: any) => {
-                                                return (
-                                                    <MenuTable table={table} />       
-                                                )
-                                            }) }
+                                                return ( <MenuTable table={table} /> )
+                                            })}
                                         </Box>
                                     </Box>
+                                    <Flex p='10px 5px'>
+                                        { data?.tables?.map((table: any) => {
+                                            return ( <Table table={table} /> )
+                                        })}
+                                    </Flex>
                                 </Flex>
                             ) : null }
                             { isNotesTabOpened ? (
