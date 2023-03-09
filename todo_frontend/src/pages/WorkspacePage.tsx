@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Box, Link, Heading, Text, VStack, Button, ButtonGroup, Spacer, Flex, Divider } from '@chakra-ui/react'
+import { Box, Heading, Text, Button, Flex, Divider } from '@chakra-ui/react'
 import { useCookies } from 'react-cookie'
 import { useParams } from 'react-router-dom'
 import { GoTasklist, GoFile, GoGear, GoInfo, GoClock, GoChevronLeft } from 'react-icons/go'
 import WorkspaceNavbar from '../components/workspace/WorkspaceNavbar'
 import MenuTable from '../components/workspace/MenuTable'
-import { tab } from '@testing-library/user-event/dist/tab'
-import Table from '../components/workspace/Table'
 
 
 const WorkspacePage: React.FC<{}> = () => {
@@ -17,6 +15,7 @@ const WorkspacePage: React.FC<{}> = () => {
     const [isTimerTabOpened, setIsTimerTabOpened] = useState(false);
     const [isInfoTabOpened, setIsInfoTabOpened] = useState(false);
     const [isSettingsTabOpened, setIsSettingsTabOpened] = useState(false);
+    const [openedTable, setOpenedTable] = useState(null);
 
     const [cookies, setCookie, removeCookie] = useCookies(['access_token', 'expires', 'username']);
 
@@ -165,9 +164,7 @@ const WorkspacePage: React.FC<{}> = () => {
                                                 p='0 !important'
                                                 bgColor='rgba(0, 0, 0, 0)'
                                                 _hover={{ bgColor: '#1C1F27' }}
-                                                onClick={() => {
-                                                    closeAllTabs();
-                                                }}
+                                                onClick={() => { closeAllTabs(); }}
                                             >
                                                 <GoChevronLeft size='24px'/>
                                             </Button>
@@ -182,11 +179,6 @@ const WorkspacePage: React.FC<{}> = () => {
                                             })}
                                         </Box>
                                     </Box>
-                                    <Flex p='10px 5px'>
-                                        { data?.tables?.map((table: any) => {
-                                            return ( <Table table={table} /> )
-                                        })}
-                                    </Flex>
                                 </Flex>
                             ) : null }
                             { isNotesTabOpened ? (

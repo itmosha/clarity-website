@@ -29,7 +29,6 @@ function MenuTable({table}: InferProps<typeof MenuTable.propTypes>) {
                     size='25px'
                     p='7px 5px 5px !important'
                     variant='unstyled'
-                    cursor='auto'
                     onClick={() => setIsExpanded(!isExpanded)}
                 >
                     { isExpanded ? (

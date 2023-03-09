@@ -9,6 +9,7 @@ import NotesIcon from '../components/svg/NotesIcon'
 import TimeIcon from '../components/svg/TimeIcon'
 import IndexPageCard from '../components/index-page/Card'
 import { useCookies } from 'react-cookie'
+import { useSelector } from 'react-redux'
 
 
 const IndexPage: React.FC<{}> = () => {
